@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akronym</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ===== PAGE START ===== */
+        #startPage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rotation-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .comet-tail {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;            margin-top: -150px;
+            margin-left: -150px;
+            animation: rotateOnEdge 20s linear infinite;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .comet-tail::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 255, 255, 0.8) 0deg,
+                rgba(0, 255, 255, 0.6) 30deg,
+                rgba(0, 191, 255, 0.4) 60deg,
+                rgba(0, 191, 255, 0.2) 90deg,
+                rgba(0, 191, 255, 0.1) 120deg,
+                transparent 180deg
+            );
+            filter: blur(20px);
+            transform: rotate(-90deg);
+        }
+
+        .trail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed rgba(0, 191, 255, 0.3);
+            border-radius: 50%;
+            box-sizing: border-box;
+            z-index: 5;
+        }
+
+        .start-btn {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(180deg, #4FD3FF 0%, #00BFFF 40%, #0080FF 100%);
+            color: white;
+            border: none;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            cursor: pointer;
+            box-shadow:                 0 10px 30px rgba(0, 0, 0, 0.5),
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 -8px 15px rgba(0, 0, 0, 0.4),
+                inset 0 8px 15px rgba(255, 255, 255, 0.5),
+                inset 0 0 0 8px rgba(200, 200, 200, 0.8),
+                inset 0 0 0 12px rgba(100, 100, 100, 0.6),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.6),
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                inset 0 -8px 15px rgba(0, 0, 0, 0.4),
+                inset 0 8px 15px rgba(255, 255, 255, 0.6),
+                inset 0 0 0 8px rgba(200, 200, 200, 0.9),
+                inset 0 0 0 12px rgba(100, 100, 100, 0.7),
+                inset 0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .start-btn:active {
+            transform: scale(0.98);
+        }
+
+        .start-btn:focus {
+            outline: none;
+        }
+
+        .start-btn:focus-visible {
+            outline: none;
+        }
+
+        @keyframes rotateOnEdge {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== PAGE CLAVIER ===== */
+        #keyboardPage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #displayArea {
+            width: 95%;
+            max-width: 600px;
+            min-height: 100px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid rgba(0, 191, 255, 0.6);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            font-size: 2rem;
+            color: #00FFFF;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .keyboard-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .key {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00BFFF;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+        }
+
+        /* Animation circulaire */
+        .key::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+        }
+
+        .key:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .key:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+        }
+
+        .key:active {
+            transform: scale(0.95);
+        }
+
+        /* Supprime le focus bleu */
+        .key:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);        }
+
+        .key:focus-visible {
+            outline: none;
+        }
+
+        /* Symboles de cartes plus grands */
+        .key.suit {
+            font-size: 2.8rem;
+        }
+
+        .key.hearts {
+            color: #FF0000;
+            border-color: #FF0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .key.hearts::before {
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%);
+        }
+
+        .key.hearts:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+        }
+
+        .key.diamonds {
+            color: #FF0000;
+            border-color: #FF0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .key.diamonds::before {
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%);
+        }
+
+        .key.diamonds:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+        }
+
+        .key.predict {
+            width: 180px;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
+            border-color: #00FF64;
+            color: #00FF64;
+        }
+
+        .key.predict::before {
+            background: radial-gradient(ellipse, rgba(0, 255, 100, 0.4) 0%, transparent 70%);        }
+
+        .key.predict:hover {
+            background: linear-gradient(180deg, rgba(0, 255, 100, 0.5) 0%, rgba(0, 200, 80, 0.5) 100%);
+            box-shadow: 0 0 25px rgba(0, 255, 100, 0.6);
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(180deg, rgba(0, 191, 255, 0.4) 0%, rgba(0, 100, 150, 0.4) 100%);
+            border: 2px solid rgba(0, 191, 255, 0.6);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(180deg, rgba(0, 191, 255, 0.7) 0%, rgba(0, 100, 150, 0.7) 100%);
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+        }
+
+        .back-btn:focus {
+            outline: none;
+        }
+
+        .back-btn:focus-visible {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE START -->
+    <div id="startPage">
+        <div class="rotation-container">
+            <div class="trail"></div>
+            <button class="start-btn" onclick="openKeyboard()">START</button>
+            <div class="comet-tail" id="cometTail"></div>
+        </div>
+    </div>
+
+    <!-- PAGE CLAVIER -->    <div id="keyboardPage">
+        <div id="displayArea"></div>
+        
+        <div class="keyboard-container">
+            <!-- Row 1: Suits -->
+            <div class="keyboard-row">
+                <button class="key suit" onclick="addChar('♠')">♠</button>
+                <button class="key suit hearts" onclick="addChar('♥')">♥</button>
+                <button class="key suit" onclick="addChar('♣')">♣</button>
+                <button class="key suit diamonds" onclick="addChar('♦')">♦</button>
+            </div>
+
+            <!-- Row 2: A, 2, 3, 4 -->
+            <div class="keyboard-row">
+                <button class="key" onclick="addChar('A')">A</button>
+                <button class="key" onclick="addChar('2')">2</button>
+                <button class="key" onclick="addChar('3')">3</button>
+                <button class="key" onclick="addChar('4')">4</button>
+            </div>
+
+            <!-- Row 3: 5, 6, 7, 8 -->
+            <div class="keyboard-row">
+                <button class="key" onclick="addChar('5')">5</button>
+                <button class="key" onclick="addChar('6')">6</button>
+                <button class="key" onclick="addChar('7')">7</button>
+                <button class="key" onclick="addChar('8')">8</button>
+            </div>
+
+            <!-- Row 4: 9, 10, J, Q -->
+            <div class="keyboard-row">
+                <button class="key" onclick="addChar('9')">9</button>
+                <button class="key" onclick="addChar('10')">10</button>
+                <button class="key" onclick="addChar('J')">J</button>
+                <button class="key" onclick="addChar('Q')">Q</button>
+            </div>
+
+            <!-- Row 5: K, PREDICT -->
+            <div class="keyboard-row">
+                <button class="key" onclick="addChar('K')">K</button>
+                <button class="key predict" onclick="predict()">PREDICT</button>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="backToStart()">RETOUR</button>
+    </div>
+
+    <script>
+        let currentRotation = 0;
+        const cometTail = document.getElementById('cometTail');
+                // Variables pour le système de cartes
+        let savedCards = [];
+        let currentX = null;
+        let currentY = null;
+        const maxSavedCards = 4;
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        const suits = ['♠', '♥', '♣', '♦'];
+
+        function updateRotation() {
+            const style = window.getComputedStyle(cometTail);
+            const matrix = style.transform;
+            
+            if (matrix !== 'none') {
+                const values_matrix = matrix.split('(')[1].split(')')[0].split(',');
+                const a = values_matrix[0];
+                const b = values_matrix[1];
+                const angleInRadians = Math.atan2(b, a);
+                currentRotation = (angleInRadians * (180 / Math.PI) + 360) % 360;
+            }
+            
+            requestAnimationFrame(updateRotation);
+        }
+
+        updateRotation();
+
+        function openKeyboard() {
+            document.getElementById('startPage').style.display = 'none';
+            document.getElementById('keyboardPage').style.display = 'flex';
+            // Réinitialiser les variables
+            savedCards = [];
+            currentX = null;
+            currentY = null;
+            document.getElementById('displayArea').textContent = '';
+        }
+
+        function backToStart() {
+            document.getElementById('keyboardPage').style.display = 'none';
+            document.getElementById('startPage').style.display = 'flex';
+        }
+
+        function addChar(char) {
+            const display = document.getElementById('displayArea');
+            
+            // Vérifier si c'est une valeur (X) ou une enseigne (Y)
+            if (values.includes(char)) {
+                // C'est une valeur (X)
+                if (currentX !== null && currentY !== null) {
+                    // Nous avons une carte complète, la sauvegarder si limite non atteinte
+                    if (savedCards.length < maxSavedCards) {
+                        savedCards.push(currentX + currentY);                        console.log('Carte sauvegardée:', currentX + currentY, '| Total:', savedCards.length);
+                    }
+                    // Effacer l'affichage et commencer une nouvelle carte
+                    display.textContent = '';
+                    currentX = char;
+                    currentY = null;
+                    display.textContent = char;
+                } else {
+                    // Pas de carte complète, juste définir/remplacer X
+                    currentX = char;
+                    display.textContent = char;
+                }
+            } else if (suits.includes(char)) {
+                // C'est une enseigne (Y)
+                if (currentX !== null) {
+                    currentY = char;
+                    display.textContent = currentX + currentY;
+                } else {
+                    // Si X n'est pas sélectionné, on ne fait rien (ou on pourrait ignorer)
+                    // Option: on pourrait aussi auto-sélectionner un X par défaut
+                }
+            }
+        }
+
+        function predict() {
+            const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+            const randomValue = values[Math.floor(Math.random() * values.length)];
+            
+            const display = document.getElementById('displayArea');
+            display.textContent += randomValue + randomSuit + ' ';
+        }
+    </script>
+</body>
+</html>
