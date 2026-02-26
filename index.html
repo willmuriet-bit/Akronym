@@ -16,6 +16,7 @@
             width: 100%;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
+            position: fixed;
         }
 
         body {
@@ -46,8 +47,8 @@
             justify-content: center;
             align-items: center;
         }
-
-        /* TRAÎNÉE LUMINEUSE - EFFET COMÈTE */        .comet-tail {
+        /* TRAÎNÉE - EXACTEMENT COMME TON CODE */
+        .comet-tail {
             position: absolute;
             width: 300px;
             height: 300px;
@@ -56,7 +57,7 @@
             margin-top: -150px;
             margin-left: -150px;
             animation: rotateOnEdge 20s linear infinite;
-            z-index: 20;
+            z-index: 15;
             pointer-events: none;
         }
 
@@ -68,76 +69,34 @@
             border-radius: 50%;
             background: conic-gradient(
                 from 0deg,
-                rgba(0, 255, 255, 0.9) 0deg,
-                rgba(0, 255, 255, 0.7) 25deg,
-                rgba(0, 191, 255, 0.5) 50deg,
-                rgba(0, 191, 255, 0.3) 75deg,
-                rgba(0, 191, 255, 0.15) 100deg,
-                rgba(0, 191, 255, 0.05) 130deg,
+                rgba(0, 255, 255, 0.8) 0deg,
+                rgba(0, 255, 255, 0.6) 30deg,
+                rgba(0, 191, 255, 0.4) 60deg,
+                rgba(0, 191, 255, 0.2) 90deg,
+                rgba(0, 191, 255, 0.1) 120deg,
                 transparent 180deg
             );
-            filter: blur(25px);
+            filter: blur(20px);
             transform: rotate(-90deg);
         }
 
-        .comet-tail::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                from 0deg,
-                rgba(0, 255, 255, 1) 0deg,
-                rgba(0, 255, 255, 0.8) 15deg,
-                rgba(0, 191, 255, 0.4) 40deg,
-                transparent 90deg
-            );
-            filter: blur(15px);
-            transform: rotate(-90deg);
-            opacity: 0.7;
-        }
-        /* Ligne pointillée */
         .trail {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 2px dashed rgba(0, 191, 255, 0.4);
+            border: 2px dashed rgba(0, 191, 255, 0.3);
             border-radius: 50%;
             box-sizing: border-box;
-            z-index: 15;
-            pointer-events: none;
+            z-index: 5;
         }
 
-        /* Point lumineux à la tête de la traînée */
-        .comet-head {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #00FFFF;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            margin-top: -10px;
-            margin-left: -10px;
-            box-shadow: 
-                0 0 20px #00FFFF,
-                0 0 40px #00FFFF,
-                0 0 60px #00BFFF,
-                0 0 80px #00BFFF;
-            animation: rotateOnEdge 20s linear infinite;
-            z-index: 25;
-            pointer-events: none;
-        }
-
-        /* BOUTON START */
+        /* BOUTON START - EXACTEMENT COMME TON CODE */
         .start-btn {
             position: relative;
-            z-index: 30;
+            z-index: 10;
             background: linear-gradient(180deg, #4FD3FF 0%, #00BFFF 40%, #0080FF 100%);
             color: white;
-            border: none;
-            width: 300px;
+            border: none;            width: 300px;
             height: 300px;
             border-radius: 50%;
             font-size: 3rem;
@@ -145,7 +104,8 @@
             letter-spacing: 5px;
             cursor: pointer;
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.5),                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 20px 60px rgba(0, 0, 0, 0.4),
                 inset 0 -8px 15px rgba(0, 0, 0, 0.4),
                 inset 0 8px 15px rgba(255, 255, 255, 0.5),
                 inset 0 0 0 8px rgba(200, 200, 200, 0.8),
@@ -153,7 +113,10 @@
                 inset 0 0 30px rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
             text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            outline: none;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .start-btn:hover {
@@ -172,13 +135,17 @@
             transform: scale(0.98);
         }
 
+        .start-btn:focus,
+        .start-btn:focus-visible {
+            outline: none;
+        }
+
         @keyframes rotateOnEdge {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* ===== PAGE CLAVIER ===== */
-        #keyboardPage {
+        /* ===== PAGE CLAVIER ===== */        #keyboardPage {
             display: none;
             position: fixed;
             top: 0;
@@ -194,6 +161,7 @@
             justify-content: flex-start;
             padding: 5px;
         }
+
         #displayArea {
             width: 95vw;
             max-width: 650px;
@@ -218,7 +186,7 @@
         }
 
         .display-card {
-            font-size: 18rem;
+            font-size: 16rem;
             display: inline-block;
             animation: cardAppear 0.3s ease;
             line-height: 1;
@@ -226,8 +194,12 @@
 
         .display-card.last-card {
             cursor: pointer;
-            filter: brightness(1.3);
-            transition: all 0.2s ease;
+            filter: brightness(1.3);            transition: all 0.2s ease;
+        }
+
+        .display-card.last-card:hover {
+            transform: scale(1.1);
+            filter: brightness(1.5);
         }
 
         .display-card.last-card:active {
@@ -243,7 +215,8 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 15px;
             border-radius: 15px;
-            border: 2px solid rgba(0, 191, 255, 0.4);            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
             max-width: 650px;
         }
@@ -266,25 +239,82 @@
             width: 80px;
             height: 80px;
             cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            outline: none;
             -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+        }
+
+        .key::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.7) 0%, rgba(0, 191, 255, 0.3) 40%, transparent 70%);
+            opacity: 0;
+            transform: scale(0.3);
+            transition: all 0.3s ease;
+        }
+
+        .key:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .key:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.5);
         }
 
         .key:active {
             transform: scale(0.95);
-            box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.5);
+        }
+
+        .key:focus,
+        .key:focus-visible {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
         }
 
         .key.suit {
             font-size: 3.5rem;
         }
 
-        .key.hearts, .key.diamonds {
+        .key.hearts {
+            color: #FF0000;
+            border-color: #FF0000;            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .key.hearts::before {
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.7) 0%, rgba(255, 0, 0, 0.3) 40%, transparent 70%);
+        }
+
+        .key.hearts:hover {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.5);
+        }
+
+        .key.diamonds {
             color: #FF0000;
             border-color: #FF0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .key.diamonds::before {
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.7) 0%, rgba(255, 0, 0, 0.3) 40%, transparent 70%);
+        }
+
+        .key.diamonds:hover {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.5);
         }
 
         .key.predict {
@@ -292,7 +322,17 @@
             border-radius: 40px;
             font-size: 1.5rem;
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
-            border-color: #00FF64;            color: #00FF64;
+            border-color: #00FF64;
+            color: #00FF64;
+        }
+
+        .key.predict::before {
+            background: radial-gradient(ellipse, rgba(0, 255, 100, 0.7) 0%, rgba(0, 255, 100, 0.3) 40%, transparent 70%);
+        }
+
+        .key.predict:hover {
+            background: linear-gradient(180deg, rgba(0, 255, 100, 0.5) 0%, rgba(0, 200, 80, 0.5) 100%);
+            box-shadow: 0 0 40px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);
         }
 
         @media (max-width: 400px) {
@@ -301,9 +341,9 @@
                 height: min(80px, 18vw);
                 font-size: min(2.2rem, 4.5vw);
             }
-            .key.suit { font-size: min(3.5rem, 7vw); }
-            .key.predict { width: min(180px, 40vw); font-size: min(1.5rem, 3.5vw); }
-            .display-card { font-size: min(18rem, 30vw); }
+            .key.suit { font-size: min(3.5rem, 7vw); }            .key.predict { width: min(180px, 40vw); font-size: min(1.5rem, 3.5vw); }
+            #displayArea { min-height: 200px; gap: 5px; padding: 5px; }
+            .display-card { font-size: min(16rem, 28vw); }
         }
     </style>
 </head>
@@ -312,9 +352,8 @@
     <div id="startPage">
         <div class="rotation-container">
             <div class="trail"></div>
-            <div class="comet-tail"></div>
-            <div class="comet-head"></div>
             <button class="start-btn" onclick="goToKeyboard()">START</button>
+            <div class="comet-tail" id="cometTail"></div>
         </div>
     </div>
 
@@ -341,7 +380,8 @@
                 <button class="key" onclick="addChar('5')">5</button>
                 <button class="key" onclick="addChar('6')">6</button>
                 <button class="key" onclick="addChar('7')">7</button>
-                <button class="key" onclick="addChar('8')">8</button>            </div>
+                <button class="key" onclick="addChar('8')">8</button>
+            </div>
 
             <div class="keyboard-row">
                 <button class="key" onclick="addChar('9')">9</button>
@@ -350,15 +390,13 @@
                 <button class="key" onclick="addChar('Q')">Q</button>
             </div>
 
-            <div class="keyboard-row">
-                <button class="key" onclick="addChar('K')">K</button>
+            <div class="keyboard-row">                <button class="key" onclick="addChar('K')">K</button>
                 <button class="key predict" onclick="predict()">PREDICT</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Variables
         var savedCards = [];
         var currentX = null;
         var currentY = null;
@@ -381,9 +419,7 @@
             'J♦': '🃋', 'Q♦': '🃍', 'K♦': '🃌'
         };
 
-        // Fonction START
         function goToKeyboard() {
-            console.log('✅ START CLIQUÉ !');
             document.getElementById('startPage').style.display = 'none';
             document.getElementById('keyboardPage').style.display = 'flex';
             savedCards = [];
@@ -391,6 +427,7 @@
             currentY = null;
             updateDisplay();
         }
+
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             display.innerHTML = '';
@@ -402,8 +439,7 @@
                 
                 if (i === savedCards.length - 1) {
                     span.className += ' last-card';
-                    span.onclick = deleteLastCard;
-                }
+                    span.onclick = deleteLastCard;                }
                 
                 display.appendChild(span);
             }
@@ -439,7 +475,8 @@
                     currentX = null;
                     currentY = null;
                     updateDisplay();
-                }            }
+                }
+            }
         }
 
         function predict() {
@@ -451,8 +488,7 @@
                 savedCards.push(cardKey);
             }
             
-            currentX = null;
-            currentY = null;
+            currentX = null;            currentY = null;
             updateDisplay();
         }
     </script>
