@@ -47,7 +47,7 @@
             align-items: center;
         }
 
-        /* TRAÎNÉE LUMINEUSE */        .comet-tail {
+        /* TRAÎNÉE LUMINEUSE - EFFET COMÈTE */        .comet-tail {
             position: absolute;
             width: 300px;
             height: 300px;
@@ -57,6 +57,7 @@
             margin-left: -150px;
             animation: rotateOnEdge 20s linear infinite;
             z-index: 20;
+            pointer-events: none;
         }
 
         .comet-tail::before {
@@ -67,26 +68,66 @@
             border-radius: 50%;
             background: conic-gradient(
                 from 0deg,
-                rgba(0, 255, 255, 0.8) 0deg,
-                rgba(0, 255, 255, 0.6) 30deg,
-                rgba(0, 191, 255, 0.4) 60deg,
-                rgba(0, 191, 255, 0.2) 90deg,
-                rgba(0, 191, 255, 0.1) 120deg,
+                rgba(0, 255, 255, 0.9) 0deg,
+                rgba(0, 255, 255, 0.7) 25deg,
+                rgba(0, 191, 255, 0.5) 50deg,
+                rgba(0, 191, 255, 0.3) 75deg,
+                rgba(0, 191, 255, 0.15) 100deg,
+                rgba(0, 191, 255, 0.05) 130deg,
                 transparent 180deg
             );
-            filter: blur(20px);
+            filter: blur(25px);
             transform: rotate(-90deg);
         }
 
+        .comet-tail::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 255, 255, 1) 0deg,
+                rgba(0, 255, 255, 0.8) 15deg,
+                rgba(0, 191, 255, 0.4) 40deg,
+                transparent 90deg
+            );
+            filter: blur(15px);
+            transform: rotate(-90deg);
+            opacity: 0.7;
+        }
         /* Ligne pointillée */
         .trail {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 2px dashed rgba(0, 191, 255, 0.3);
+            border: 2px dashed rgba(0, 191, 255, 0.4);
             border-radius: 50%;
             box-sizing: border-box;
-            z-index: 10;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Point lumineux à la tête de la traînée */
+        .comet-head {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #00FFFF;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -10px;
+            box-shadow: 
+                0 0 20px #00FFFF,
+                0 0 40px #00FFFF,
+                0 0 60px #00BFFF,
+                0 0 80px #00BFFF;
+            animation: rotateOnEdge 20s linear infinite;
+            z-index: 25;
+            pointer-events: none;
         }
 
         /* BOUTON START */
@@ -96,15 +137,15 @@
             background: linear-gradient(180deg, #4FD3FF 0%, #00BFFF 40%, #0080FF 100%);
             color: white;
             border: none;
-            width: 300px;            height: 300px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             font-size: 3rem;
             font-weight: bold;
             letter-spacing: 5px;
             cursor: pointer;
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.5),
-                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.5),                0 20px 60px rgba(0, 0, 0, 0.4),
                 inset 0 -8px 15px rgba(0, 0, 0, 0.4),
                 inset 0 8px 15px rgba(255, 255, 255, 0.5),
                 inset 0 0 0 8px rgba(200, 200, 200, 0.8),
@@ -113,6 +154,18 @@
             transition: all 0.3s ease;
             text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
             -webkit-tap-highlight-color: transparent;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.6),
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                inset 0 -8px 15px rgba(0, 0, 0, 0.4),
+                inset 0 8px 15px rgba(255, 255, 255, 0.6),
+                inset 0 0 0 8px rgba(200, 200, 200, 0.9),
+                inset 0 0 0 12px rgba(100, 100, 100, 0.7),
+                inset 0 0 40px rgba(255, 255, 255, 0.4);
         }
 
         .start-btn:active {
@@ -141,11 +194,11 @@
             justify-content: flex-start;
             padding: 5px;
         }
-
         #displayArea {
             width: 95vw;
             max-width: 650px;
-            min-height: 200px;            background: rgba(0, 0, 0, 0.7);
+            min-height: 200px;
+            background: rgba(0, 0, 0, 0.7);
             border: 3px solid rgba(0, 191, 255, 0.6);
             border-radius: 15px;
             margin: 10px 0;
@@ -190,11 +243,11 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 15px;
             border-radius: 15px;
-            border: 2px solid rgba(0, 191, 255, 0.4);
-            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.4);            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
             max-width: 650px;
         }
+
         .keyboard-row {
             display: flex;
             justify-content: center;
@@ -239,11 +292,11 @@
             border-radius: 40px;
             font-size: 1.5rem;
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
-            border-color: #00FF64;
-            color: #00FF64;
+            border-color: #00FF64;            color: #00FF64;
         }
 
-        @media (max-width: 400px) {            .key {
+        @media (max-width: 400px) {
+            .key {
                 width: min(80px, 18vw);
                 height: min(80px, 18vw);
                 font-size: min(2.2rem, 4.5vw);
@@ -260,6 +313,7 @@
         <div class="rotation-container">
             <div class="trail"></div>
             <div class="comet-tail"></div>
+            <div class="comet-head"></div>
             <button class="start-btn" onclick="goToKeyboard()">START</button>
         </div>
     </div>
@@ -287,12 +341,12 @@
                 <button class="key" onclick="addChar('5')">5</button>
                 <button class="key" onclick="addChar('6')">6</button>
                 <button class="key" onclick="addChar('7')">7</button>
-                <button class="key" onclick="addChar('8')">8</button>
-            </div>
+                <button class="key" onclick="addChar('8')">8</button>            </div>
 
             <div class="keyboard-row">
                 <button class="key" onclick="addChar('9')">9</button>
-                <button class="key" onclick="addChar('10')">10</button>                <button class="key" onclick="addChar('J')">J</button>
+                <button class="key" onclick="addChar('10')">10</button>
+                <button class="key" onclick="addChar('J')">J</button>
                 <button class="key" onclick="addChar('Q')">Q</button>
             </div>
 
@@ -327,7 +381,7 @@
             'J♦': '🃋', 'Q♦': '🃍', 'K♦': '🃌'
         };
 
-        // Fonction START - SIMPLE ET DIRECTE
+        // Fonction START
         function goToKeyboard() {
             console.log('✅ START CLIQUÉ !');
             document.getElementById('startPage').style.display = 'none';
@@ -337,11 +391,11 @@
             currentY = null;
             updateDisplay();
         }
-
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             display.innerHTML = '';
-                        for (var i = 0; i < savedCards.length; i++) {
+            
+            for (var i = 0; i < savedCards.length; i++) {
                 var span = document.createElement('span');
                 span.className = 'display-card';
                 span.textContent = cardEmojis[savedCards[i]] || savedCards[i];
@@ -385,12 +439,12 @@
                     currentX = null;
                     currentY = null;
                     updateDisplay();
-                }
-            }
+                }            }
         }
 
         function predict() {
-            var randomSuit = suits[Math.floor(Math.random() * suits.length)];            var randomValue = values[Math.floor(Math.random() * values.length)];
+            var randomSuit = suits[Math.floor(Math.random() * suits.length)];
+            var randomValue = values[Math.floor(Math.random() * values.length)];
             var cardKey = randomValue + randomSuit;
             
             if (savedCards.length < maxSavedCards) {
