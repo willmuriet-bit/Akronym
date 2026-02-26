@@ -37,6 +37,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 1;
         }
 
         .rotation-container {
@@ -87,16 +88,17 @@
             border-radius: 50%;
             box-sizing: border-box;
             z-index: 5;
+            pointer-events: none;
         }
 
         .start-btn {
             position: relative;
-            z-index: 10;
+            z-index: 100;
             background: linear-gradient(180deg, #4FD3FF 0%, #00BFFF 40%, #0080FF 100%);
             color: white;
-            border: none;
-            width: 300px;
-            height: 300px;            border-radius: 50%;
+            border: none;            width: 300px;
+            height: 300px;
+            border-radius: 50%;
             font-size: 3rem;
             font-weight: bold;
             letter-spacing: 5px;
@@ -115,6 +117,7 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             -webkit-user-select: none;
+            pointer-events: auto;
         }
 
         .start-btn:hover {
@@ -142,10 +145,10 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         /* ===== PAGE CLAVIER ===== */
         #keyboardPage {
-            display: none;            position: fixed;
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -153,7 +156,7 @@
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
-            z-index: 100;
+            z-index: 200;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
@@ -191,10 +194,10 @@
             animation: cardAppear 0.3s ease;
             line-height: 1;
         }
-
         /* Dernière carte (cliquable pour supprimer) */
         .display-card.last-card {
-            cursor: pointer;            filter: brightness(1.3);
+            cursor: pointer;
+            filter: brightness(1.3);
             transition: all 0.2s ease;
         }
 
@@ -240,10 +243,10 @@
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #00BFFF;
             border-radius: 50%;
-            color: white;
-            font-size: 2.2rem;
+            color: white;            font-size: 2.2rem;
             font-weight: bold;
-            width: 80px;            height: 80px;
+            width: 80px;
+            height: 80px;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
@@ -259,6 +262,7 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
             -webkit-focus-ring-color: transparent;
+            pointer-events: auto;
         }
 
         /* Animation circulaire */
@@ -288,11 +292,11 @@
             transform: scale(0.95);
         }
 
-        .key:focus,
-        .key:focus-visible {
+        .key:focus,        .key:focus-visible {
             outline: none;
             box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
         }
+
         /* Symboles de cartes plus grands */
         .key.suit {
             font-size: 3.5rem;
@@ -338,10 +342,10 @@
         .key.predict::before {
             background: radial-gradient(ellipse, rgba(0, 255, 100, 0.7) 0%, rgba(0, 255, 100, 0.3) 40%, transparent 70%);
         }
-
         .key.predict:hover {
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.5) 0%, rgba(0, 200, 80, 0.5) 100%);
-            box-shadow: 0 0 40px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);        }
+            box-shadow: 0 0 40px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);
+        }
 
         /* Responsive pour petits écrans */
         @media (max-width: 400px) {
@@ -386,11 +390,11 @@
     <div id="keyboardPage">
         <!-- Zone d'affichage cartes -->
         <div id="displayArea"></div>
-        
-        <div class="keyboard-container">
+                <div class="keyboard-container">
             <!-- Row 1: Suits -->
             <div class="keyboard-row">
-                <button class="key suit" onclick="addChar('♠')">♠</button>                <button class="key suit hearts" onclick="addChar('♥')">♥</button>
+                <button class="key suit" onclick="addChar('♠')">♠</button>
+                <button class="key suit hearts" onclick="addChar('♥')">♥</button>
                 <button class="key suit" onclick="addChar('♣')">♣</button>
                 <button class="key suit diamonds" onclick="addChar('♦')">♦</button>
             </div>
@@ -428,18 +432,18 @@
     </div>
 
     <script>
+        // Variables globales
         let currentRotation = 0;
-        const cometTail = document.getElementById('cometTail');
-        
-        // Variables pour le système de cartes
         let savedCards = [];
         let currentX = null;
         let currentY = null;
         const maxSavedCards = 4;
         const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-        const suits = ['♠', '♥', '♣', '♦'];
+        const suits = ['♠', '♥', '♣', '♦'];        let cometTail = null;
+        let startBtn = null;
 
-        // Mapping des cartes vers les emojis (Q/K CORRIGÉS)        const cardEmojis = {
+        // Mapping des cartes vers les emojis (Q/K CORRIGÉS)
+        const cardEmojis = {
             'A♠': '🂡', '2♠': '🂢', '3♠': '🂣', '4♠': '🂤', '5♠': '🂥',
             '6♠': '🂦', '7♠': '🂧', '8♠': '🂨', '9♠': '🂩', '10♠': '🂪',
             'J♠': '🂫', 'Q♠': '🂭', 'K♠': '🂬',
@@ -454,7 +458,60 @@
             'J♦': '🃋', 'Q♦': '🃍', 'K♦': '🃌'
         };
 
+        // Fonction pour ouvrir le clavier
+        function openKeyboard() {
+            console.log('✅ START cliqué !');
+            const startPage = document.getElementById('startPage');
+            const keyboardPage = document.getElementById('keyboardPage');
+            if (startPage && keyboardPage) {
+                startPage.style.display = 'none';
+                keyboardPage.style.display = 'flex';
+                savedCards = [];
+                currentX = null;
+                currentY = null;
+                updateDisplay();
+                console.log('✅ Clavier ouvert !');
+            }
+        }
+
+        // Initialisation APRÈS le chargement complet du DOM
+        function init() {
+            console.log('🔄 Initialisation...');
+            
+            cometTail = document.getElementById('cometTail');
+            startBtn = document.getElementById('startBtn');
+            
+            console.log('🔍 cometTail:', cometTail);
+            console.log('🔍 startBtn:', startBtn);
+            
+            if (startBtn) {
+                // Supprimer tous les anciens écouteurs
+                startBtn.replaceWith(startBtn.cloneNode(true));
+                
+                // Récupérer le nouveau bouton                startBtn = document.getElementById('startBtn');
+                
+                // Ajouter les écouteurs
+                startBtn.addEventListener('click', openKeyboard);
+                startBtn.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('👆 Touchstart détecté !');
+                    openKeyboard();
+                }, { passive: false });
+                
+                console.log('✅ Bouton START prêt et fonctionnel !');
+            } else {
+                console.error('❌ Bouton START non trouvé !');
+            }
+            
+            if (cometTail) {
+                updateRotation();
+                console.log('✅ Animation traînée démarrée !');
+            }
+        }
+
         function updateRotation() {
+            if (!cometTail) return;
             const style = window.getComputedStyle(cometTail);
             const matrix = style.transform;
             
@@ -469,31 +526,9 @@
             requestAnimationFrame(updateRotation);
         }
 
-        updateRotation();
-
-        // Fonction pour ouvrir le clavier - COMPATIBLE MOBILE + GITHUB
-        function openKeyboard() {
-            console.log('START cliqué !');
-            document.getElementById('startPage').style.display = 'none';
-            document.getElementById('keyboardPage').style.display = 'flex';
-            savedCards = [];
-            currentX = null;
-            currentY = null;
-            updateDisplay();
-        }
-
-        // Écouteurs directs (pas de DOMContentLoaded pour GitHub)
-        const startBtn = document.getElementById('startBtn');
-        if (startBtn) {
-            startBtn.addEventListener('click', openKeyboard);
-            startBtn.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                openKeyboard();            });
-            console.log('Bouton START prêt !');
-        }
-
         function updateDisplay() {
             const display = document.getElementById('displayArea');
+            if (!display) return;
             display.innerHTML = '';
             
             savedCards.forEach((card, index) => {
@@ -502,8 +537,7 @@
                 span.textContent = cardEmojis[card] || card;
                 
                 if (index === savedCards.length - 1) {
-                    span.classList.add('last-card');
-                    span.onclick = () => deleteLastCard();
+                    span.classList.add('last-card');                    span.onclick = () => deleteLastCard();
                     span.ontouchstart = (e) => {
                         e.preventDefault();
                         deleteLastCard();
@@ -537,7 +571,8 @@
                 updateDisplay();
             } else if (suits.includes(char)) {
                 if (currentX !== null) {
-                    currentY = char;                    if (savedCards.length < maxSavedCards) {
+                    currentY = char;
+                    if (savedCards.length < maxSavedCards) {
                         savedCards.push(currentX + currentY);
                     }
                     currentX = null;
@@ -551,8 +586,7 @@
             const randomSuit = suits[Math.floor(Math.random() * suits.length)];
             const randomValue = values[Math.floor(Math.random() * values.length)];
             const cardKey = randomValue + randomSuit;
-            
-            if (savedCards.length < maxSavedCards) {
+                        if (savedCards.length < maxSavedCards) {
                 savedCards.push(cardKey);
             }
             
@@ -560,6 +594,23 @@
             currentY = null;
             updateDisplay();
         }
+
+        // === CORRECTION PRINCIPALE : Initialisation différée ===
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+            console.log('⏳ DOM pas encore chargé, on attend...');
+        } else {
+            init();
+            console.log('✅ DOM déjà chargé, on initialise tout de suite !');
+        }
+
+        // Fallback supplémentaire pour GitHub Pages
+        window.addEventListener('load', function() {
+            console.log('📦 Page entièrement chargée (load event)');
+            if (!startBtn) {
+                init();
+            }
+        });
     </script>
 </body>
 </html>
