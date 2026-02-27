@@ -9,8 +9,6 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            
-            /* ✅ SUPPRIMER LE RECTANGLE BLEU - GLOBAL */
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
         }
@@ -47,9 +45,9 @@
             width: 300px;
             height: 300px;
             display: flex;
-            justify-content: center;            align-items: center;
+            justify-content: center;
+            align-items: center;
         }
-
         .comet-tail {
             position: absolute;
             width: 300px;
@@ -96,9 +94,9 @@
                 rgba(0, 191, 255, 0.5) 40deg,
                 transparent 90deg
             );
-            filter: blur(10px);            transform: rotate(-90deg);
-            opacity: 0.9;
-        }
+            filter: blur(10px);
+            transform: rotate(-90deg);
+            opacity: 0.9;        }
 
         .trail {
             position: absolute;
@@ -145,9 +143,9 @@
             box-shadow: 
                 0 12px 35px rgba(0, 0, 0, 0.6),
                 0 25px 70px rgba(0, 0, 0, 0.5),
-                inset 0 -8px 15px rgba(0, 0, 0, 0.4),                inset 0 8px 15px rgba(255, 255, 255, 0.6),
-                inset 0 0 0 8px rgba(200, 200, 200, 0.9),
-                inset 0 0 0 12px rgba(100, 100, 100, 0.7),
+                inset 0 -8px 15px rgba(0, 0, 0, 0.4),
+                inset 0 8px 15px rgba(255, 255, 255, 0.6),
+                inset 0 0 0 8px rgba(200, 200, 200, 0.9),                inset 0 0 0 12px rgba(100, 100, 100, 0.7),
                 inset 0 0 40px rgba(255, 255, 255, 0.4);
         }
 
@@ -194,9 +192,9 @@
             font-size: 5rem;
             color: #00FFFF;
             text-align: center;
-            box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
+            display: flex;
+            align-items: center;            justify-content: center;
             flex-wrap: nowrap;
             gap: 5px;
             line-height: 1;
@@ -243,9 +241,9 @@
             padding: 15px;
             border-radius: 15px;
             border: 2px solid rgba(0, 191, 255, 0.4);
-            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);            width: 95vw;
-            max-width: 700px;
-        }
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+            width: 95vw;
+            max-width: 700px;        }
 
         .keyboard-row {
             display: flex;
@@ -292,9 +290,9 @@
             transition: all 0.3s ease;
         }
 
-        .key:hover::before {            opacity: 1;
-            transform: scale(1);
-        }
+        .key:hover::before {
+            opacity: 1;
+            transform: scale(1);        }
 
         .key:hover {
             transform: scale(1.1);
@@ -341,9 +339,9 @@
             content: '';
             position: absolute;
             width: 150%;
-            height: 150%;            border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.3);
+            height: 150%;
+            border-radius: 50%;
+            opacity: 0;            transform: scale(0.3);
             transition: all 0.1s ease;
         }
 
@@ -390,8 +388,8 @@
         }
 
         .key.active-y {
-            animation: pulseY 2s infinite;        }
-
+            animation: pulseY 2s infinite;
+        }
         .key.active-y::before {
             opacity: 1;
             transform: scale(1);
@@ -439,9 +437,9 @@
             border-color: #00FF64;
             color: #00FF64;
             transition: all 0.5s ease;
-            pointer-events: none;            opacity: 0.5;
-            cursor: not-allowed;
-        }
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;        }
 
         .key.predict.predict-giant {
             font-size: 3rem;
@@ -489,8 +487,8 @@
             align-items: center;
             justify-content: center;
         }
-        .loading-container {
-            position: relative;
+
+        .loading-container {            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -537,9 +535,9 @@
             width: 8px;
             height: 8px;
             background: #00FFFF;
-            border-radius: 50%;            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
-
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -555,7 +553,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* ✅ CARTE RETOURNABLE - CENTRÉE FIXE */
         .card-flip-container {
             display: block;
             width: 300px;
@@ -565,8 +562,6 @@
             animation: zoomBreath 3s ease-in-out infinite;
             margin: 0 auto;
             position: relative;
-            
-            /* ✅ EMPÊCHER TOUTE SÉLECTION */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -582,26 +577,22 @@
             height: 100%;
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
-            
-            /* ✅ EMPÊCHER TOUTE SÉLECTION */
             user-select: none;
             -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
         }
 
         .card-emoji {
             position: absolute;
             width: 100%;
-            height: 100%;
-            display: flex;
+            height: 100%;            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 33rem;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             background: transparent;
-            
-            /* ✅ EMPÊCHER LA SÉLECTION SEULEMENT */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -631,11 +622,11 @@
             }
         }
 
-        /* ✅ BOUTON EXIT - POSITION ABSOLUE (NE DÉPLACE PAS LA CARTE) */
         .exit-btn {
             position: absolute;
             bottom: -150px;
-            left: 50%;            transform: translateX(-50%);
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(200, 200, 200, 0.3) 100%);
             border: 2px solid #FFFFFF;
             color: #FFFFFF;
@@ -644,8 +635,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            animation: pulseWhite 4s infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: pulseWhite 4s infinite;            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
             visibility: hidden;
             opacity: 0;
@@ -684,7 +674,8 @@
             .key.predict { width: min(180px, 40vw); font-size: min(2rem, 4vw); }
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
             #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }
-            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }            .card-flip-container { width: 250px; height: 375px; }
+            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
+            .card-flip-container { width: 250px; height: 375px; }
             .card-emoji { font-size: 27rem; }
             .exit-btn { bottom: -120px; font-size: 1.2rem; padding: 12px 30px; }
         }
@@ -693,8 +684,7 @@
 <body>
     <div id="startPage">
         <div class="rotation-container">
-            <div class="trail"></div>
-            <button class="start-btn" onclick="goToKeyboard()">START</button>
+            <div class="trail"></div>            <button class="start-btn" id="startBtn">START</button>
             <div class="comet-tail" id="cometTail"></div>
         </div>
     </div>
@@ -733,7 +723,8 @@
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="K" onclick="addChar('K')">K</button>
-                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>            </div>
+                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>
+            </div>
         </div>
     </div>
 
@@ -742,15 +733,13 @@
             <div class="loading-ring"></div>
             <div class="loading-ring"></div>
             <div class="loading-ring"></div>
-            <div class="loading-particles">
-                <div class="particle"></div>
+            <div class="loading-particles">                <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
             </div>
         </div>
         
-        <!-- ✅ CARTE AVEC FLIP INFINI - TOUJOURS AFFICHÉE -->
         <div class="card-flip-container" id="cardFlipContainer" onclick="flipCard()">
             <div class="card-flip-inner" id="cardFlipInner">
                 <div class="card-emoji back" id="cardBack">🂠</div>
@@ -758,11 +747,11 @@
             </div>
         </div>
         
-        <!-- ✅ BOUTON EXIT - POSITION ABSOLUE (NE DÉPLACE PAS LA CARTE) -->
         <button class="exit-btn" id="exitBtn" onclick="exitToStart()">EXIT</button>
     </div>
 
     <script>
+        // ✅ VARIABLES GLOBALES
         var savedCards = [];
         var currentX = null;
         var currentY = null;
@@ -774,6 +763,7 @@
         var isFlipping = false;
         var hasFlippedOnce = false;
 
+        // ✅ EMOJIS CARTES
         var cardEmojis = {
             'A♠': '🂡', '2♠': '🂢', '3♠': '🂣', '4♠': '🂤', '5♠': '🂥',
             '6♠': '🂦', '7♠': '🂧', '8♠': '🂨', '9♠': '🂩', '10♠': '🂪',
@@ -782,12 +772,31 @@
             '6♥': '🂶', '7♥': '🂷', '8♥': '🂸', '9♥': '🂹', '10♥': '🂺',
             'J♥': '🂻', 'Q♥': '🂽', 'K♥': '🂼',
             'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',
-            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',            'J♣': '🃛', 'Q♣': '🃝', 'K♣': '🃜',
+            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
+            'J♣': '🃛', 'Q♣': '🃝', 'K♣': '🃜',
             'A♦': '🃁', '2♦': '🃂', '3♦': '🃃', '4♦': '🃄', '5♦': '🃅',
             '6♦': '🃆', '7♦': '🃇', '8♦': '🃈', '9♦': '🃉', '10♦': '🃊',
             'J♦': '🃋', 'Q♦': '🃍', 'K♦': '🃌'
         };
 
+        // ✅ INITIALISATION AU CHARGEMENT
+        window.addEventListener('load', function() {
+            console.log('✅ Page chargée - Initialisation...');
+            initStartButton();            trackCometRotation();
+        });
+
+        // ✅ INITIALISATION BOUTON START
+        function initStartButton() {
+            var startBtn = document.getElementById('startBtn');
+            if (startBtn) {
+                startBtn.addEventListener('click', goToKeyboard);
+                console.log('✅ Bouton START initialisé');
+            } else {
+                console.error('❌ Bouton START non trouvé!');
+            }
+        }
+
+        // ✅ SUIVI ROTATION COMÈTE
         function trackCometRotation() {
             var cometTail = document.getElementById('cometTail');
             if (cometTail) {
@@ -804,34 +813,49 @@
             requestAnimationFrame(trackCometRotation);
         }
 
-        trackCometRotation();
-
+        // ✅ ALLER VERS CLAVIER
         function goToKeyboard() {
+            console.log('🎯 goToKeyboard() appelé');
+            
+            var startPage = document.getElementById('startPage');
+            var keyboardPage = document.getElementById('keyboardPage');
             var predictBtn = document.getElementById('predictBtn');
+            
+            if (!startPage || !keyboardPage) {
+                console.error('❌ Pages non trouvées!');
+                return;
+            }
+            
             if (predictBtn) {
                 if (cometTailRotation >= 0 && cometTailRotation < 180) {
                     predictBtn.classList.add('predict-giant');
                 } else {
                     predictBtn.classList.remove('predict-giant');
-                }
-            }
-            document.getElementById('startPage').style.display = 'none';
-            document.getElementById('keyboardPage').style.display = 'flex';
+                }            }
+            
+            startPage.style.display = 'none';
+            keyboardPage.style.display = 'flex';
+            
             savedCards = [];
             currentX = null;
             currentY = null;
             isFlipped = false;
             isFlipping = false;
             hasFlippedOnce = false;
+            
             updateXButtonAnimation();
             updateYButtonAnimation();
             updateDisplay();
             updatePredictButton();
+            
+            console.log('✅ Navigation vers clavier réussie');
         }
 
+        // ✅ ANIMATION BOUTONS X
         function updateXButtonAnimation() {
             var allValueBtns = document.querySelectorAll('.value-btn');
-            for (var i = 0; i < allValueBtns.length; i++) {                allValueBtns[i].classList.remove('active-x');
+            for (var i = 0; i < allValueBtns.length; i++) {
+                allValueBtns[i].classList.remove('active-x');
             }
             
             if (currentX !== null) {
@@ -842,6 +866,7 @@
             }
         }
 
+        // ✅ ANIMATION BOUTONS Y
         function updateYButtonAnimation() {
             var allSuitBtns = document.querySelectorAll('.key.suit');
             for (var i = 0; i < allSuitBtns.length; i++) {
@@ -855,7 +880,7 @@
                 }
             }
         }
-
+        // ✅ BOUTON PREDICT
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
@@ -880,7 +905,8 @@
                     break;
                 }
                 uniqueCards[displayedCards[i]] = true;
-            }            
+            }
+            
             if (hasFourCards && allDifferent) {
                 predictBtn.classList.add('predict-active');
             } else {
@@ -888,12 +914,12 @@
             }
         }
 
+        // ✅ AFFICHAGE CARTES
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             if (!display) return;
             
             var newContent = '';
-            
             var numToShow = Math.min(savedCards.length, maxSavedCards);
             
             for (var i = 0; i < numToShow; i++) {
@@ -903,8 +929,7 @@
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
 
-            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
-                var currentCard = currentX + currentY;
+            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {                var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
                 var suit = currentCard.slice(-1);
@@ -920,6 +945,7 @@
             attachClickListeners();
         }
 
+        // ✅ GESTION CLICS CARTES
         function attachClickListeners() {
             var display = document.getElementById('displayArea');
             if (!display) return;
@@ -929,7 +955,8 @@
             for (var i = 0; i < allCards.length; i++) {
                 allCards[i].classList.remove('last-card');
                 allCards[i].onclick = null;
-                allCards[i].ontouchstart = null;            }
+                allCards[i].ontouchstart = null;
+            }
             
             if (allCards.length > 0) {
                 var lastCard = allCards[allCards.length - 1];
@@ -942,20 +969,22 @@
             }
         }
 
+        // ✅ SUPPRIMER DERNIÈRE CARTE
         function deleteLastCard() {
             if (currentX !== null && currentY !== null) {
+                // Carte en cours effacée
             } else if (savedCards.length > 0) {
                 savedCards.pop();
             }
             
             currentX = null;
-            currentY = null;
-            updateXButtonAnimation();
+            currentY = null;            updateXButtonAnimation();
             updateYButtonAnimation();
             updatePredictButton();
             updateDisplay();
         }
 
+        // ✅ AJOUTER CARACTÈRE
         function addChar(char) {
             if (values.indexOf(char) >= 0) {
                 if (currentX !== null && currentY !== null) {
@@ -978,10 +1007,12 @@
                     updateXButtonAnimation();
                     updateYButtonAnimation();
                     updatePredictButton();
-                    updateDisplay();                }
+                    updateDisplay();
+                }
             }
         }
 
+        // ✅ PREDICT
         function predict() {
             var displayedCards = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
@@ -996,8 +1027,7 @@
             var uniqueCards = {};
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
-                    allDifferent = false;
-                    break;
+                    allDifferent = false;                    break;
                 }
                 uniqueCards[displayedCards[i]] = true;
             }
@@ -1013,7 +1043,6 @@
             document.getElementById('cardFlipContainer').style.display = 'none';
             document.getElementById('exitBtn').classList.remove('visible');
             
-            // Réinitialiser la carte
             isFlipped = false;
             isFlipping = false;
             hasFlippedOnce = false;
@@ -1027,7 +1056,8 @@
             }, 4000);
         }
 
-        // ✅ FONCTION FLIP INFINI AVEC SWAP À 90°        function flipCard() {
+        // ✅ FLIP CARTE
+        function flipCard() {
             if (isFlipping) return;
             
             var cardInner = document.getElementById('cardFlipInner');
@@ -1038,29 +1068,23 @@
             isFlipping = true;
             
             if (!isFlipped) {
-                // 🂠 → 🃊 (flip vers l'avant)
                 cardInner.style.transform = 'rotateY(180deg)';
                 
-                // SWAP à 90° (400ms = moitié de 800ms)
                 setTimeout(function() {
                     cardBack.style.display = 'none';
                     cardFace.style.display = 'flex';
                 }, 400);
                 
                 isFlipped = true;
-                
-                // ✅ AFFICHER BOUTON EXIT APRÈS 1ER FLIP
-                if (!hasFlippedOnce) {
+                                if (!hasFlippedOnce) {
                     hasFlippedOnce = true;
                     setTimeout(function() {
                         exitBtn.classList.add('visible');
                     }, 800);
                 }
             } else {
-                // 🃊 → 🂠 (flip vers l'arrière)
                 cardInner.style.transform = 'rotateY(0deg)';
                 
-                // SWAP à 90° (400ms = moitié de 800ms)
                 setTimeout(function() {
                     cardFace.style.display = 'none';
                     cardBack.style.display = 'flex';
@@ -1069,17 +1093,16 @@
                 isFlipped = false;
             }
             
-            // Débloquer le flip après l'animation
             setTimeout(function() {
                 isFlipping = false;
             }, 800);
         }
 
-        // ✅ FONCTION EXIT - RETOUR À LA PAGE D'ACCUEIL
-        function exitToStart() {            document.getElementById('predictPage').style.display = 'none';
+        // ✅ EXIT VERS START
+        function exitToStart() {
+            document.getElementById('predictPage').style.display = 'none';
             document.getElementById('startPage').style.display = 'flex';
             
-            // Réinitialiser toutes les variables
             savedCards = [];
             currentX = null;
             currentY = null;
@@ -1087,7 +1110,7 @@
             isFlipping = false;
             hasFlippedOnce = false;
             
-            console.log('🔄 Retour à la page d\'accueil - Prêt à recommencer!');
+            console.log('🔄 Retour à la page d\'accueil');
         }
     </script>
 </body>
