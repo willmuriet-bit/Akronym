@@ -178,32 +178,52 @@
             padding: 5px;
         }
 
+        /* ✅ PROMPTEUR OPTIMISÉ POUR 4 CARTES MAX */
         #displayArea {
             width: 95vw;
-            max-width: 650px;
-            min-height: 200px;
+            max-width: 700px;
+            min-height: 220px;
             background: rgba(0, 0, 0, 0.7);
             border: 3px solid rgba(0, 191, 255, 0.6);
             border-radius: 15px;
             margin: 10px 0;
-            padding: 10px;
+            padding: 15px;
             font-size: 5rem;
             color: #00FFFF;
             text-align: center;
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;            gap: 5px;
+            justify-content: center;            flex-wrap: wrap;
+            gap: 12px;
             line-height: 1;
             overflow-x: auto;
             overflow-y: hidden;
         }
 
+        /* ✅ EMOJIS AGRANDIS AU MAX SANS DÉPASSER */
         .display-card {
-            font-size: 16rem;
+            font-size: clamp(8rem, 18vw, 13rem);
             display: inline-block;
             line-height: 1;
+            min-width: 0;
+            flex-shrink: 1;
+        }
+
+        /* ✅ COULEURS PAR ENSEIGNE */
+        .display-card[data-suit="♠"],
+        .display-card[data-suit="♣"] {
+            color: #000000;
+        }
+
+        .display-card[data-suit="♥"],
+        .display-card[data-suit="♦"] {
+            color: #FF0000;
+        }
+
+        /* Carte dos reste bleue */
+        .golden-card {
+            color: #00FFFF;
         }
 
         .display-card.last-card {
@@ -223,12 +243,11 @@
 
         .keyboard-container {
             background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 15px;
+            padding: 15px;            border-radius: 15px;
             border: 2px solid rgba(0, 191, 255, 0.4);
             box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
-            max-width: 650px;
+            max-width: 700px;
         }
 
         .keyboard-row {
@@ -243,7 +262,8 @@
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #00BFFF;
             border-radius: 50%;
-            color: white;            font-size: 2.8rem;
+            color: white;
+            font-size: 2.8rem;
             font-weight: bold;
             width: 80px;
             height: 80px;
@@ -272,8 +292,7 @@
             background: radial-gradient(circle, rgba(0, 191, 255, 0.7) 0%, rgba(0, 191, 255, 0.3) 40%, transparent 70%);
             opacity: 0;
             transform: scale(0.3);
-            transition: all 0.3s ease;
-        }
+            transition: all 0.3s ease;        }
 
         .key:hover::before {
             opacity: 1;
@@ -292,7 +311,8 @@
         .key:focus,
         .key:focus-visible {
             outline: none;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);        }
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+        }
 
         .key.active-x {
             animation: pulseBlue 2s infinite;
@@ -321,8 +341,7 @@
         }
 
         .key.suit::before {
-            content: '';
-            position: absolute;
+            content: '';            position: absolute;
             width: 150%;
             height: 150%;
             border-radius: 50%;
@@ -341,7 +360,8 @@
         }
 
         .key.suit:not(.hearts):not(.diamonds):active {
-            transform: scale(0.95);            box-shadow: 0 0 40px rgba(255, 255, 255, 0.9), 0 0 60px rgba(255, 255, 255, 0.6);
+            transform: scale(0.95);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.9), 0 0 60px rgba(255, 255, 255, 0.6);
         }
 
         .key.hearts::before {
@@ -371,7 +391,6 @@
             transform: scale(0.95);
             box-shadow: 0 0 40px rgba(255, 0, 0, 0.9), 0 0 60px rgba(255, 0, 0, 0.6);
         }
-
         .key.active-y {
             animation: pulseY 2s infinite;
         }
@@ -390,7 +409,8 @@
             }
         }
 
-        .key.hearts.active-y {            animation: pulseYRed 2s infinite;
+        .key.hearts.active-y {
+            animation: pulseYRed 2s infinite;
         }
 
         @keyframes pulseYRed {
@@ -419,8 +439,7 @@
             border-radius: 40px;
             font-size: 2rem;
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
-            border-color: #00FF64;
-            color: #00FF64;
+            border-color: #00FF64;            color: #00FF64;
             transition: all 0.5s ease;
         }
 
@@ -439,7 +458,8 @@
                 box-shadow: 0 0 40px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);
             }
             50% {
-                box-shadow: 0 0 60px rgba(0, 255, 100, 1), 0 0 80px rgba(0, 255, 100, 0.7);            }
+                box-shadow: 0 0 60px rgba(0, 255, 100, 1), 0 0 80px rgba(0, 255, 100, 0.7);
+            }
         }
 
         .key.predict::before {
@@ -468,9 +488,7 @@
             justify-content: center;
         }
 
-        /* Animation de chargement */
-        .loading-container {
-            position: relative;
+        .loading-container {            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -488,6 +506,7 @@
             border-right-color: #00BFFF;
             animation: spin 1s linear infinite;
         }
+
         .loading-ring:nth-child(2) {
             width: 70%;
             height: 70%;
@@ -519,7 +538,6 @@
             border-radius: 50%;
             box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
-
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -535,22 +553,20 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Carte dos - MODIFICATIONS DEMANDÉES */
         .golden-card {
-            display: none;            font-size: 90rem; /* ✅ Taille augmentée (75rem → 90rem) */
+            display: none;
+            font-size: 90rem;
             color: #00FFFF;
             animation: zoomBreath 3s ease-in-out infinite;
-            /* ✅ Brume bleue SUPPRIMÉE (plus de filter drop-shadow) */
         }
 
-        /* ✅ Effet de grandissement réduit de moitié (1.3 → 1.15) */
         @keyframes zoomBreath {
             0%, 100% { 
                 transform: scale(1);
                 opacity: 0.9;
             }
             50% { 
-                transform: scale(1.15); /* Avant: 1.3, Maintenant: 1.15 (moitié) */
+                transform: scale(1.15);
                 opacity: 1;
             }
         }
@@ -570,8 +586,7 @@
             display: none;
         }
 
-        .back-btn:hover {
-            transform: scale(1.05);
+        .back-btn:hover {            transform: scale(1.05);
             box-shadow: 0 0 30px rgba(0, 191, 255, 0.8);
         }
 
@@ -584,9 +599,10 @@
             .key.suit { font-size: min(3.5rem, 7vw); }
             .key.predict { width: min(180px, 40vw); font-size: min(2rem, 4vw); }
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
-            #displayArea { min-height: 200px; gap: 5px; padding: 5px; }
-            .display-card { font-size: min(16rem, 28vw); }
-            .golden-card { font-size: min(90rem, 140vw); }        }
+            #displayArea { min-height: 220px; gap: 12px; padding: 15px; }
+            .display-card { font-size: clamp(8rem, 18vw, 13rem); }
+            .golden-card { font-size: min(90rem, 140vw); }
+        }
     </style>
 </head>
 <body>
@@ -619,8 +635,7 @@
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="5" onclick="addChar('5')">5</button>
                 <button class="key value-btn" data-value="6" onclick="addChar('6')">6</button>
-                <button class="key value-btn" data-value="7" onclick="addChar('7')">7</button>
-                <button class="key value-btn" data-value="8" onclick="addChar('8')">8</button>
+                <button class="key value-btn" data-value="7" onclick="addChar('7')">7</button>                <button class="key value-btn" data-value="8" onclick="addChar('8')">8</button>
             </div>
 
             <div class="keyboard-row">
@@ -636,7 +651,7 @@
             </div>
         </div>
     </div>
-    <!-- PAGE PREDICT -->
+
     <div id="predictPage">
         <div class="loading-container" id="loadingContainer">
             <div class="loading-ring"></div>
@@ -669,8 +684,7 @@
             'A♥': '🂱', '2♥': '🂲', '3♥': '🂳', '4♥': '🂴', '5♥': '🂵',
             '6♥': '🂶', '7♥': '🂷', '8♥': '🂸', '9♥': '🂹', '10♥': '🂺',
             'J♥': '🂻', 'Q♥': '🂽', 'K♥': '🂼',
-            'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',
-            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
+            'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
             'J♣': '🃛', 'Q♣': '🃝', 'K♣': '🃜',
             'A♦': '🃁', '2♦': '🃂', '3♦': '🃃', '4♦': '🃄', '5♦': '🃅',
             '6♦': '🃆', '7♦': '🃇', '8♦': '🃈', '9♦': '🃉', '10♦': '🃊',
@@ -684,7 +698,8 @@
                 var matrix = style.transform;
                 if (matrix !== 'none') {
                     var values_matrix = matrix.split('(')[1].split(')')[0].split(',');
-                    var a = values_matrix[0];                    var b = values_matrix[1];
+                    var a = values_matrix[0];
+                    var b = values_matrix[1];
                     var angleInRadians = Math.atan2(b, a);
                     cometTailRotation = (angleInRadians * (180 / Math.PI) + 360) % 360;
                 }
@@ -718,8 +733,7 @@
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
                 allValueBtns[i].classList.remove('active-x');
-            }
-            
+            }            
             if (currentX !== null) {
                 var activeBtn = document.querySelector('.value-btn[data-value="' + currentX + '"]');
                 if (activeBtn) {
@@ -733,7 +747,8 @@
             for (var i = 0; i < allSuitBtns.length; i++) {
                 allSuitBtns[i].classList.remove('active-y');
             }
-                        if (currentY !== null) {
+            
+            if (currentY !== null) {
                 var activeBtn = document.querySelector('.key.suit[data-suit="' + currentY + '"]');
                 if (activeBtn) {
                     activeBtn.classList.add('active-y');
@@ -741,20 +756,16 @@
             }
         }
 
-        // ✅ CORRECTION FINALE: PREDICT basé sur cartes AFFICHÉES (pas sauvegardées)
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
             
-            // 1. Compter le total de cartes AFFICHÉES (sauvegardées + aperçu)
             var totalDisplayed = savedCards.length;
             
-            // 2. Ajouter l'aperçu si existe (X+Y) et si place disponible
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 totalDisplayed++;
             }
             
-            // 3. Vérifier s'il y a un DOUBLON dans l'aperçu
             var hasDuplicate = false;
             if (currentX !== null && currentY !== null) {
                 var currentCard = currentX + currentY;
@@ -763,26 +774,21 @@
                 }
             }
             
-            console.log('🔮 updatePredictButton - totalDisplayed:', totalDisplayed, 'hasDuplicate:', hasDuplicate, 'savedCards:', savedCards.length);
-            
-            // 4. Activer PREDICT seulement si : 4 cartes affichées ET pas de doublon
             if (totalDisplayed === 4 && !hasDuplicate) {
                 predictBtn.style.pointerEvents = 'auto';
                 predictBtn.style.opacity = '1';
                 predictBtn.style.cursor = 'pointer';
                 predictBtn.classList.add('predict-active');
-                console.log('✅ PREDICT ACTIVÉ (4 cartes, pas de doublon)');
             } else {
                 predictBtn.style.pointerEvents = 'auto';
                 predictBtn.style.opacity = '0.5';
-                predictBtn.style.cursor = 'not-allowed';
-                predictBtn.classList.remove('predict-active');
-                console.log('❌ PREDICT DÉSACTIVÉ (total:', totalDisplayed, ', doublon:', hasDuplicate, ')');
+                predictBtn.style.cursor = 'not-allowed';                predictBtn.classList.remove('predict-active');
             }
         }
 
         function updateDisplay() {
-            var display = document.getElementById('displayArea');            var newContent = '';
+            var display = document.getElementById('displayArea');
+            var newContent = '';
             
             var hasPreview = (currentX !== null && currentY !== null && savedCards.length < maxSavedCards);
             var numSavedToShow = hasPreview ? Math.min(savedCards.length, maxSavedCards - 1) : Math.min(savedCards.length, maxSavedCards);
@@ -790,18 +796,20 @@
             for (var i = 0; i < numSavedToShow; i++) {
                 var cardKey = savedCards[i];
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
-                newContent += '<span class="display-card">' + cardEmoji + '</span>';
+                var suit = cardKey.slice(-1);
+                newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
 
             if (hasPreview) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
+                var suit = currentCard.slice(-1);
                 
                 if (isDuplicate) {
-                    newContent += '<span class="display-card last-card" style="filter: brightness(0.5);">' + currentEmoji + '</span>';
+                    newContent += '<span class="display-card last-card" data-suit="' + suit + '" style="filter: brightness(0.5);">' + currentEmoji + '</span>';
                 } else {
-                    newContent += '<span class="display-card last-card">' + currentEmoji + '</span>';
+                    newContent += '<span class="display-card last-card" data-suit="' + suit + '">' + currentEmoji + '</span>';
                 }
             }
 
@@ -823,73 +831,60 @@
             
             if (allCards.length > 0) {
                 var lastCard = allCards[allCards.length - 1];
-                lastCard.classList.add('last-card');
-                lastCard.onclick = deleteLastCard;
+                lastCard.classList.add('last-card');                lastCard.onclick = deleteLastCard;
                 lastCard.ontouchstart = function(e) {
                     e.preventDefault();
                     deleteLastCard();
                 };
             }
         }
+
         function deleteLastCard() {
-            console.log('🗑️ deleteLastCard - Avant:', {savedCards: savedCards.slice(), currentX: currentX, currentY: currentY});
-            
             if (currentX !== null && currentY !== null) {
-                console.log('→ Carte en cours effacée');
             } else if (savedCards.length > 0) {
                 savedCards.pop();
-                console.log('→ Carte sauvegardée supprimée');
             }
             
             currentX = null;
             currentY = null;
             updateXButtonAnimation();
             updateYButtonAnimation();
-            updatePredictButton(); // ✅ Met à jour PREDICT après suppression
-            console.log('→ currentX = null, currentY = null');
+            updatePredictButton();
             
             updateDisplay();
         }
 
         function addChar(char) {
-            console.log('🎯 addChar - char:', char, 'currentX:', currentX, 'currentY:', currentY, 'savedCards:', savedCards.length);
-            
             if (values.indexOf(char) >= 0) {
-                // C'est une valeur (X)
                 if (currentX !== null && currentY !== null) {
-                    // Une carte complète (X+Y) existe → la sauvegarder
                     var cardKey = currentX + currentY;
                     if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
                         savedCards.push(cardKey);
-                        console.log('✅ Carte sauvegardée: ' + cardKey, '(total:', savedCards.length, ')');
-                    } else {
-                        console.log('❌ Doublon ou plein: ' + cardKey);
                     }
                 }
-                // Nouveau X (dans tous les cas)
                 currentX = char;
                 currentY = null;
                 
                 updateXButtonAnimation();
                 updateYButtonAnimation();
-                updatePredictButton(); // ✅ Met à jour PREDICT
+                updatePredictButton();
                 updateDisplay();
                 
             } else if (suits.indexOf(char) >= 0) {
-                // C'est une enseigne (Y)
                 if (currentX !== null) {
                     currentY = char;
                     updateXButtonAnimation();
-                    updateYButtonAnimation();                    updatePredictButton(); // ✅ Met à jour PREDICT
+                    updateYButtonAnimation();
+                    updatePredictButton();
                     updateDisplay();
                 }
             }
         }
-
         function predict() {
-            console.log('🔮 predict() appelé - savedCards.length:', savedCards.length);
+            if (savedCards.length < maxSavedCards) {
+                return;
+            }
             
-            // Vérification finale de sécurité
             var totalDisplayed = savedCards.length;
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 totalDisplayed++;
@@ -903,33 +898,27 @@
             }
             
             if (totalDisplayed !== 4 || hasDuplicate) {
-                console.log('❌ PREDICT refusé: totalDisplayed:', totalDisplayed, 'hasDuplicate:', hasDuplicate);
                 return;
             }
             
-            console.log('✅ PREDICT accepté!');
-            
-            // Ouvrir page PREDICT
             document.getElementById('keyboardPage').style.display = 'none';
             document.getElementById('predictPage').style.display = 'flex';
             
-            // Afficher loading
             document.getElementById('loadingContainer').style.display = 'flex';
             document.getElementById('goldenCard').style.display = 'none';
             document.getElementById('backBtn').style.display = 'none';
             
-            // Animation 4 secondes
             setTimeout(function() {
                 document.getElementById('loadingContainer').style.display = 'none';
                 document.getElementById('goldenCard').style.display = 'block';
                 document.getElementById('backBtn').style.display = 'block';
-                console.log('✅ Carte dos affichée!');
             }, 4000);
         }
 
         function backToKeyboard() {
             document.getElementById('predictPage').style.display = 'none';
-            document.getElementById('keyboardPage').style.display = 'flex';            updateDisplay();
+            document.getElementById('keyboardPage').style.display = 'flex';
+            updateDisplay();
         }
     </script>
 </body>
