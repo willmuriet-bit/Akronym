@@ -178,7 +178,7 @@
             padding: 5px;
         }
 
-        /* ✅ PROMPTEUR OPTIMISÉ POUR 4 CARTES MAX */
+        /* ✅ PROMPTEUR - MAX 4 EMOJIS + ESPACE RÉDUIT */
         #displayArea {
             width: 95vw;
             max-width: 700px;
@@ -187,41 +187,41 @@
             border: 3px solid rgba(0, 191, 255, 0.6);
             border-radius: 15px;
             margin: 10px 0;
-            padding: 15px;
+            padding: 20px 25px;
             font-size: 5rem;
             color: #00FFFF;
             text-align: center;
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
             display: flex;
             align-items: center;
-            justify-content: center;            flex-wrap: wrap;
-            gap: 12px;
+            justify-content: center;            flex-wrap: nowrap;
+            gap: 10px;
             line-height: 1;
             overflow-x: auto;
             overflow-y: hidden;
         }
 
-        /* ✅ EMOJIS AGRANDIS AU MAX SANS DÉPASSER */
+        /* ✅ EMOJIS - TAILLE UNIFORME */
         .display-card {
-            font-size: clamp(8rem, 18vw, 13rem);
+            font-size: clamp(7.5rem, 14vw, 11rem);
             display: inline-block;
             line-height: 1;
             min-width: 0;
-            flex-shrink: 1;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         /* ✅ COULEURS PAR ENSEIGNE */
-        .display-card[data-suit="♠"],
-        .display-card[data-suit="♣"] {
-            color: #000000;
-        }
-
         .display-card[data-suit="♥"],
         .display-card[data-suit="♦"] {
             color: #FF0000;
         }
 
-        /* Carte dos reste bleue */
+        .display-card[data-suit="♠"],
+        .display-card[data-suit="♣"] {
+            color: #FFFFFF;
+        }
+
         .golden-card {
             color: #00FFFF;
         }
@@ -434,23 +434,31 @@
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
         }
 
+        /* ✅ BOUTON PREDICT - DÉSACTIVÉ PAR DÉFAUT */
         .key.predict {
             width: 180px;
             border-radius: 40px;
             font-size: 2rem;
-            background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
-            border-color: #00FF64;            color: #00FF64;
+            background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);            border-color: #00FF64;
+            color: #00FF64;
             transition: all 0.5s ease;
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .key.predict.predict-giant {
             font-size: 3rem;
         }
 
+        /* ✅ PREDICT ACTIF - SEULEMENT QUAND 4 EMOJIS DIFFÉRENTS */
         .key.predict.predict-active {
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.6) 0%, rgba(0, 200, 80, 0.6) 100%);
             box-shadow: 0 0 40px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);
             animation: pulsePredict 1.5s infinite;
+            pointer-events: auto;
+            opacity: 1;
+            cursor: pointer;
         }
 
         @keyframes pulsePredict {
@@ -480,15 +488,15 @@
             width: 100%;
             height: 100%;
             background-image: url('background.jpg');
-            background-size: cover;
-            background-position: center;
+            background-size: cover;            background-position: center;
             z-index: 200;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .loading-container {            position: relative;
+        .loading-container {
+            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -529,7 +537,6 @@
             height: 100%;
             animation: spin 3s linear infinite;
         }
-
         .particle {
             position: absolute;
             width: 8px;
@@ -538,6 +545,7 @@
             border-radius: 50%;
             box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
+
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -578,15 +586,15 @@
             color: white;
             border: none;
             padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 1.2rem;
+            border-radius: 30px;            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
             display: none;
         }
 
-        .back-btn:hover {            transform: scale(1.05);
+        .back-btn:hover {
+            transform: scale(1.05);
             box-shadow: 0 0 30px rgba(0, 191, 255, 0.8);
         }
 
@@ -599,8 +607,8 @@
             .key.suit { font-size: min(3.5rem, 7vw); }
             .key.predict { width: min(180px, 40vw); font-size: min(2rem, 4vw); }
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
-            #displayArea { min-height: 220px; gap: 12px; padding: 15px; }
-            .display-card { font-size: clamp(8rem, 18vw, 13rem); }
+            #displayArea { min-height: 220px; gap: 10px; padding: 20px 25px; }
+            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
             .golden-card { font-size: min(90rem, 140vw); }
         }
     </style>
@@ -627,15 +635,15 @@
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="A" onclick="addChar('A')">A</button>
-                <button class="key value-btn" data-value="2" onclick="addChar('2')">2</button>
-                <button class="key value-btn" data-value="3" onclick="addChar('3')">3</button>
+                <button class="key value-btn" data-value="2" onclick="addChar('2')">2</button>                <button class="key value-btn" data-value="3" onclick="addChar('3')">3</button>
                 <button class="key value-btn" data-value="4" onclick="addChar('4')">4</button>
             </div>
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="5" onclick="addChar('5')">5</button>
                 <button class="key value-btn" data-value="6" onclick="addChar('6')">6</button>
-                <button class="key value-btn" data-value="7" onclick="addChar('7')">7</button>                <button class="key value-btn" data-value="8" onclick="addChar('8')">8</button>
+                <button class="key value-btn" data-value="7" onclick="addChar('7')">7</button>
+                <button class="key value-btn" data-value="8" onclick="addChar('8')">8</button>
             </div>
 
             <div class="keyboard-row">
@@ -676,7 +684,6 @@
         var values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
         var suits = ['♠', '♥', '♣', '♦'];
         var cometTailRotation = 0;
-
         var cardEmojis = {
             'A♠': '🂡', '2♠': '🂢', '3♠': '🂣', '4♠': '🂤', '5♠': '🂥',
             '6♠': '🂦', '7♠': '🂧', '8♠': '🂨', '9♠': '🂩', '10♠': '🂪',
@@ -684,7 +691,8 @@
             'A♥': '🂱', '2♥': '🂲', '3♥': '🂳', '4♥': '🂴', '5♥': '🂵',
             '6♥': '🂶', '7♥': '🂷', '8♥': '🂸', '9♥': '🂹', '10♥': '🂺',
             'J♥': '🂻', 'Q♥': '🂽', 'K♥': '🂼',
-            'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
+            'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',
+            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
             'J♣': '🃛', 'Q♣': '🃝', 'K♣': '🃜',
             'A♦': '🃁', '2♦': '🃂', '3♦': '🃃', '4♦': '🃄', '5♦': '🃅',
             '6♦': '🃆', '7♦': '🃇', '8♦': '🃈', '9♦': '🃉', '10♦': '🃊',
@@ -725,15 +733,15 @@
             currentY = null;
             updateXButtonAnimation();
             updateYButtonAnimation();
-            updateDisplay();
-            updatePredictButton();
+            updateDisplay();            updatePredictButton();
         }
 
         function updateXButtonAnimation() {
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
                 allValueBtns[i].classList.remove('active-x');
-            }            
+            }
+            
             if (currentX !== null) {
                 var activeBtn = document.querySelector('.value-btn[data-value="' + currentX + '"]');
                 if (activeBtn) {
@@ -756,33 +764,46 @@
             }
         }
 
+        // ✅ RÈGLE PREDICT : 4 emojis DIFFÉRENTS requis pour activer
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
             
-            var totalDisplayed = savedCards.length;
+            // 1. Récupérer toutes les cartes affichées (MAX 4)
+            var displayedCards = [];
             
-            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
-                totalDisplayed++;
+            // Ajouter les cartes sauvegardées (MAX 4)
+            for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
+                displayedCards.push(savedCards[i]);
             }
             
-            var hasDuplicate = false;
-            if (currentX !== null && currentY !== null) {
-                var currentCard = currentX + currentY;
-                if (savedCards.indexOf(currentCard) >= 0) {
-                    hasDuplicate = true;
+            // Ajouter l'aperçu si X+Y existe ET qu'il y a moins de 4 cartes
+            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
+                displayedCards.push(currentX + currentY);
+            }
+            
+            // 2. Vérifier : exactement 4 cartes affichées ?            var hasFourCards = (displayedCards.length === 4);
+            
+            // 3. Vérifier : toutes les cartes sont-elles DIFFÉRENTES ?
+            var allDifferent = true;
+            var uniqueCards = {};
+            for (var i = 0; i < displayedCards.length; i++) {
+                if (uniqueCards[displayedCards[i]]) {
+                    allDifferent = false;
+                    break;
                 }
+                uniqueCards[displayedCards[i]] = true;
             }
             
-            if (totalDisplayed === 4 && !hasDuplicate) {
-                predictBtn.style.pointerEvents = 'auto';
-                predictBtn.style.opacity = '1';
-                predictBtn.style.cursor = 'pointer';
+            console.log('🔮 updatePredictButton - displayedCards:', displayedCards, 'hasFourCards:', hasFourCards, 'allDifferent:', allDifferent);
+            
+            // 4. Activer PREDICT SEULEMENT si : 4 cartes ET toutes différentes
+            if (hasFourCards && allDifferent) {
                 predictBtn.classList.add('predict-active');
+                console.log('✅ PREDICT ACTIVÉ (4 cartes différentes)');
             } else {
-                predictBtn.style.pointerEvents = 'auto';
-                predictBtn.style.opacity = '0.5';
-                predictBtn.style.cursor = 'not-allowed';                predictBtn.classList.remove('predict-active');
+                predictBtn.classList.remove('predict-active');
+                console.log('❌ PREDICT DÉSACTIVÉ');
             }
         }
 
@@ -790,17 +811,17 @@
             var display = document.getElementById('displayArea');
             var newContent = '';
             
-            var hasPreview = (currentX !== null && currentY !== null && savedCards.length < maxSavedCards);
-            var numSavedToShow = hasPreview ? Math.min(savedCards.length, maxSavedCards - 1) : Math.min(savedCards.length, maxSavedCards);
-            
-            for (var i = 0; i < numSavedToShow; i++) {
+            // Afficher les cartes sauvegardées (MAX 4)
+            var numToShow = Math.min(savedCards.length, maxSavedCards);
+            for (var i = 0; i < numToShow; i++) {
                 var cardKey = savedCards[i];
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
                 var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
 
-            if (hasPreview) {
+            // Afficher l'aperçu si X+Y existe ET moins de 4 cartes
+            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
@@ -810,16 +831,15 @@
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '" style="filter: brightness(0.5);">' + currentEmoji + '</span>';
                 } else {
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '">' + currentEmoji + '</span>';
-                }
-            }
+                }            }
 
             if (display.innerHTML !== newContent) {
                 display.innerHTML = newContent;
-                attachClickListeners(savedCards.length > 0 && !hasPreview);
+                attachClickListeners();
             }
         }
 
-        function attachClickListeners(makeLastSavedClickable) {
+        function attachClickListeners() {
             var display = document.getElementById('displayArea');
             var allCards = display.querySelectorAll('.display-card');
             
@@ -831,7 +851,8 @@
             
             if (allCards.length > 0) {
                 var lastCard = allCards[allCards.length - 1];
-                lastCard.classList.add('last-card');                lastCard.onclick = deleteLastCard;
+                lastCard.classList.add('last-card');
+                lastCard.onclick = deleteLastCard;
                 lastCard.ontouchstart = function(e) {
                     e.preventDefault();
                     deleteLastCard();
@@ -841,7 +862,9 @@
 
         function deleteLastCard() {
             if (currentX !== null && currentY !== null) {
+                // Supprimer carte en cours
             } else if (savedCards.length > 0) {
+                // Supprimer carte sauvegardée
                 savedCards.pop();
             }
             
@@ -850,15 +873,14 @@
             updateXButtonAnimation();
             updateYButtonAnimation();
             updatePredictButton();
-            
             updateDisplay();
         }
 
         function addChar(char) {
             if (values.indexOf(char) >= 0) {
+                // C'est une valeur (X)
                 if (currentX !== null && currentY !== null) {
-                    var cardKey = currentX + currentY;
-                    if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
+                    var cardKey = currentX + currentY;                    if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
                         savedCards.push(cardKey);
                     }
                 }
@@ -871,6 +893,7 @@
                 updateDisplay();
                 
             } else if (suits.indexOf(char) >= 0) {
+                // C'est une enseigne (Y)
                 if (currentX !== null) {
                     currentY = char;
                     updateXButtonAnimation();
@@ -880,27 +903,35 @@
                 }
             }
         }
+
         function predict() {
-            if (savedCards.length < maxSavedCards) {
-                return;
+            // Vérification de sécurité : 4 cartes DIFFÉRENTES requises
+            var displayedCards = [];
+            for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
+                displayedCards.push(savedCards[i]);
+            }
+            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
+                displayedCards.push(currentX + currentY);
             }
             
-            var totalDisplayed = savedCards.length;
-            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
-                totalDisplayed++;
-            }
-            var hasDuplicate = false;
-            if (currentX !== null && currentY !== null) {
-                var currentCard = currentX + currentY;
-                if (savedCards.indexOf(currentCard) >= 0) {
-                    hasDuplicate = true;
+            var hasFourCards = (displayedCards.length === 4);
+            var allDifferent = true;
+            var uniqueCards = {};
+            for (var i = 0; i < displayedCards.length; i++) {
+                if (uniqueCards[displayedCards[i]]) {
+                    allDifferent = false;
+                    break;
                 }
+                uniqueCards[displayedCards[i]] = true;
             }
             
-            if (totalDisplayed !== 4 || hasDuplicate) {
+            if (!hasFourCards || !allDifferent) {
+                console.log('❌ PREDICT refusé: hasFourCards:', hasFourCards, 'allDifferent:', allDifferent);
                 return;
             }
+                        console.log('✅ PREDICT accepté!');
             
+            // Ouvrir page PREDICT
             document.getElementById('keyboardPage').style.display = 'none';
             document.getElementById('predictPage').style.display = 'flex';
             
