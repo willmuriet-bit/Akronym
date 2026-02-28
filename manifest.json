@@ -1,0 +1,12 @@
+{
+  "name": "Akronym",
+  "short_name": "Akronym",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0a2e",
+  "theme_color": "#0a0a2e",
+  "icons": [
+    {"src": "small-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "small-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
