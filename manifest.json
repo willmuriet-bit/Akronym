@@ -1,9 +1,11 @@
 {
   "name": "Akronym",
   "short_name": "Akronym",
+  "description": "Jeu de cartes Akronym",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0a0a2e",
-  "theme_color": "#0a0a2e"
+  "theme_color": "#0a0a2e",
+  "orientation": "portrait"
 }
