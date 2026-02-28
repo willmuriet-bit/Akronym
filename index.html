@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#0a0a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Akronym">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="small-192.png">
     <title>Akronym</title>
@@ -44,15 +47,14 @@
             align-items: center;
         }
 
-        .rotation-container {
-            position: relative;
+        .rotation-container {            position: relative;
             width: 300px;
-            height: 300px;            display: flex;
+            height: 300px;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* ✅ ✅ ✅ VALEURS EXACTES ORIGINALES - SANS MODIFICATION */
         .comet-tail {
             position: absolute;
             width: 300px;
@@ -94,9 +96,9 @@
             height: 100%;
             border-radius: 50%;
             background: conic-gradient(
-                from 0deg,
-                rgba(0, 255, 255, 1) 0deg,
-                rgba(0, 255, 255, 0.8) 15deg,                rgba(0, 191, 255, 0.5) 40deg,
+                from 0deg,                rgba(0, 255, 255, 1) 0deg,
+                rgba(0, 255, 255, 0.8) 15deg,
+                rgba(0, 191, 255, 0.5) 40deg,
                 transparent 90deg
             );
             filter: blur(10px);
@@ -117,7 +119,6 @@
             pointer-events: none;
         }
 
-        /* ✅ START BUTTON - Z-INDEX 10 + ONCLICK DIRECT */
         .start-btn {
             position: relative;
             z-index: 10;
@@ -144,8 +145,8 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            -webkit-user-select: none;
-        }
+            -webkit-user-select: none;        }
+
         .start-btn:hover {
             transform: scale(1.02);
         }
@@ -193,8 +194,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: nowrap;
-            gap: 5px;            line-height: 1;
+            flex-wrap: nowrap;            gap: 5px;
+            line-height: 1;
             overflow-x: auto;
             overflow-y: hidden;
         }
@@ -242,8 +243,8 @@
             border: 2px solid rgba(0, 191, 255, 0.4);
             box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
-            max-width: 700px;
-        }
+            max-width: 700px;        }
+
         .keyboard-row {
             display: flex;
             justify-content: center;
@@ -291,8 +292,8 @@
 
         .key:hover::before {
             opacity: 1;
-            transform: scale(1);
-        }
+            transform: scale(1);        }
+
         .key:hover {
             transform: scale(1.1);
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.5);
@@ -340,8 +341,8 @@
             width: 150%;
             height: 150%;
             border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.3);            transition: all 0.1s ease;
+            opacity: 0;            transform: scale(0.3);
+            transition: all 0.1s ease;
         }
 
         .key.suit:not(.hearts):not(.diamonds)::before {
@@ -389,8 +390,8 @@
         .key.active-y {
             animation: pulseY 2s infinite;
         }
-
-        .key.active-y::before {            opacity: 1;
+        .key.active-y::before {
+            opacity: 1;
             transform: scale(1);
         }
 
@@ -438,8 +439,8 @@
             transition: all 0.5s ease;
             pointer-events: none;
             opacity: 0.5;
-            cursor: not-allowed;
-        }
+            cursor: not-allowed;        }
+
         .key.predict.predict-giant {
             font-size: 3rem;
         }
@@ -487,8 +488,8 @@
             align-items: center;
             justify-content: center;
         }
-
-        .loading-container {            position: relative;
+        .loading-container {
+            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -536,8 +537,8 @@
             height: 8px;
             background: #00FFFF;
             border-radius: 50%;
-            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
-        }
+            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;        }
+
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -585,8 +586,8 @@
 
         .card-emoji {
             position: absolute;
-            width: 100%;
-            height: 100%;            display: flex;
+            width: 100%;            height: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 33rem;
@@ -634,8 +635,8 @@
             #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }
             .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
             .card-flip-container { width: 250px; height: 375px; }
-            .card-emoji { font-size: 27rem; }
-        }    </style>
+            .card-emoji { font-size: 27rem; }        }
+    </style>
 </head>
 <body>
     <div id="startPage">
@@ -732,8 +733,8 @@
             '7♠', '7♥', '7♣', '7♦',
             '8♠', '8♥', '8♣', '8♦',
             '9♠', '9♥', '9♣', '9♦',
-            '10♠', '10♥', '10♣', '10♦',
-            'J♠', 'J♥', 'J♣', 'J♦',            'Q♠', 'Q♥', 'Q♣', 'Q♦',
+            '10♠', '10♥', '10♣', '10♦',            'J♠', 'J♥', 'J♣', 'J♦',
+            'Q♠', 'Q♥', 'Q♣', 'Q♦',
             'K♠', 'K♥', 'K♣', 'K♦'
         ];
 
@@ -781,8 +782,8 @@
                 } else {
                     predictBtn.classList.remove('predict-giant');
                 }
-            }
-            document.getElementById('startPage').style.display = 'none';            document.getElementById('keyboardPage').style.display = 'flex';
+            }            document.getElementById('startPage').style.display = 'none';
+            document.getElementById('keyboardPage').style.display = 'flex';
             savedCards = [];
             currentX = null;
             currentY = null;
@@ -804,8 +805,16 @@
             initDoubleTap();
             initLongPress();
             trackCometRotation();
+            
+            // ✅ PWA Service Worker Registration
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
             }
         });
 
@@ -822,8 +831,7 @@
             if (tapLength < 300 && tapLength > 0) {
                 e.preventDefault();
                 exitToStart(0);
-                lastTapTime = 0;
-            } else {
+                lastTapTime = 0;            } else {
                 lastTapTime = currentTime;
             }
         }
@@ -831,7 +839,8 @@
         function initLongPress() {
             var predictPage = document.getElementById('predictPage');
             if (predictPage) {
-                predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });                predictPage.addEventListener('touchend', handleLongPressEnd);
+                predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });
+                predictPage.addEventListener('touchend', handleLongPressEnd);
                 predictPage.addEventListener('mousedown', handleLongPressStart);
                 predictPage.addEventListener('mouseup', handleLongPressEnd);
                 predictPage.addEventListener('mouseleave', handleLongPressEnd);
@@ -871,8 +880,7 @@
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
                 allValueBtns[i].classList.remove('active-x');
-            }
-            if (currentX !== null) {
+            }            if (currentX !== null) {
                 var activeBtn = document.querySelector('.value-btn[data-value="' + currentX + '"]');
                 if (activeBtn) {
                     activeBtn.classList.add('active-x');
@@ -880,7 +888,8 @@
             }
         }
 
-        function updateYButtonAnimation() {            var allSuitBtns = document.querySelectorAll('.key.suit');
+        function updateYButtonAnimation() {
+            var allSuitBtns = document.querySelectorAll('.key.suit');
             for (var i = 0; i < allSuitBtns.length; i++) {
                 allSuitBtns[i].classList.remove('active-y');
             }
@@ -920,8 +929,7 @@
         }
 
         function updateDisplay() {
-            var display = document.getElementById('displayArea');
-            if (!display) return;
+            var display = document.getElementById('displayArea');            if (!display) return;
             var newContent = '';
             var numToShow = Math.min(savedCards.length, maxSavedCards);
             for (var i = 0; i < numToShow; i++) {
@@ -929,7 +937,8 @@
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
                 var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
-            }            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
+            }
+            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
@@ -969,8 +978,7 @@
             } else if (savedCards.length > 0) {
                 savedCards.pop();
             }
-            currentX = null;
-            currentY = null;
+            currentX = null;            currentY = null;
             updateXButtonAnimation();
             updateYButtonAnimation();
             updatePredictButton();
@@ -978,7 +986,8 @@
         }
 
         function addChar(char) {
-            if (values.indexOf(char) >= 0) {                if (currentX !== null && currentY !== null) {
+            if (values.indexOf(char) >= 0) {
+                if (currentX !== null && currentY !== null) {
                     var cardKey = currentX + currentY;
                     if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
                         savedCards.push(cardKey);
@@ -1018,8 +1027,7 @@
             var cardNumbers = {};
             for (var i = 0; i < cardPositions.length; i++) {
                 cardNumbers[cardPositions[i].card] = i + 1;
-            }
-            var codeArray = [];
+            }            var codeArray = [];
             for (var i = 0; i < stock.length; i++) {
                 codeArray.push(cardNumbers[stock[i]]);
             }
@@ -1027,7 +1035,8 @@
         }
 
         function determineReveal(code) {
-            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;            var carteTrouvee = null;
+            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
+            var carteTrouvee = null;
             for (var carte in liste) {
                 if (liste[carte] === code) {
                     carteTrouvee = carte;
@@ -1067,8 +1076,7 @@
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 displayedCards.push(savedCards[i]);
             }
-            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
-                displayedCards.push(currentX + currentY);
+            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {                displayedCards.push(currentX + currentY);
             }
             var hasFourCards = (displayedCards.length === 4);
             var allDifferent = true;
@@ -1076,7 +1084,8 @@
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
                     allDifferent = false;
-                    break;                }
+                    break;
+                }
                 uniqueCards[displayedCards[i]] = true;
             }
             if (!hasFourCards || !allDifferent) {
@@ -1116,8 +1125,7 @@
             var cardFace = document.getElementById('cardFace');
             isFlipping = true;
             if (!isFlipped) {
-                cardInner.style.transform = 'rotateY(180deg)';
-                setTimeout(function() {
+                cardInner.style.transform = 'rotateY(180deg)';                setTimeout(function() {
                     cardBack.style.display = 'none';
                     cardFace.style.display = 'flex';
                 }, 400);
@@ -1125,7 +1133,8 @@
             } else {
                 cardInner.style.transform = 'rotateY(0deg)';
                 setTimeout(function() {
-                    cardFace.style.display = 'none';                    cardBack.style.display = 'flex';
+                    cardFace.style.display = 'none';
+                    cardBack.style.display = 'flex';
                 }, 400);
                 isFlipped = false;
             }
@@ -1165,5 +1174,4 @@
             }
         }
     </script>
-</body>
-</html>
+</body></html>manifest.json
