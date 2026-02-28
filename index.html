@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0a0a2e">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="small-192.png">
     <title>Akronym</title>
     <style>
         * {
@@ -44,12 +47,12 @@
         .rotation-container {
             position: relative;
             width: 300px;
-            height: 300px;
-            display: flex;
+            height: 300px;            display: flex;
             justify-content: center;
-            align-items: center;        }
+            align-items: center;
+        }
 
-        /* ✅ TRAÎNÉE LUMINEUSE - CODE ORIGINAL EXACT */
+        /* ✅ ✅ ✅ VALEURS EXACTES ORIGINALES - SANS MODIFICATION */
         .comet-tail {
             position: absolute;
             width: 300px;
@@ -93,10 +96,10 @@
             background: conic-gradient(
                 from 0deg,
                 rgba(0, 255, 255, 1) 0deg,
-                rgba(0, 255, 255, 0.8) 15deg,
-                rgba(0, 191, 255, 0.5) 40deg,
+                rgba(0, 255, 255, 0.8) 15deg,                rgba(0, 191, 255, 0.5) 40deg,
                 transparent 90deg
-            );            filter: blur(10px);
+            );
+            filter: blur(10px);
             transform: rotate(-90deg);
             opacity: 0.9;
             pointer-events: none;
@@ -114,6 +117,7 @@
             pointer-events: none;
         }
 
+        /* ✅ START BUTTON - Z-INDEX 10 + ONCLICK DIRECT */
         .start-btn {
             position: relative;
             z-index: 10;
@@ -142,16 +146,8 @@
             user-select: none;
             -webkit-user-select: none;
         }
-
         .start-btn:hover {
             transform: scale(1.02);
-            box-shadow:                 0 12px 35px rgba(0, 0, 0, 0.6),
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                inset 0 -8px 15px rgba(0, 0, 0, 0.4),
-                inset 0 8px 15px rgba(255, 255, 255, 0.6),
-                inset 0 0 0 8px rgba(200, 200, 200, 0.9),
-                inset 0 0 0 12px rgba(100, 100, 100, 0.7),
-                inset 0 0 40px rgba(255, 255, 255, 0.4);
         }
 
         .start-btn:active {
@@ -194,11 +190,11 @@
             color: #00FFFF;
             text-align: center;
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
-            display: flex;            align-items: center;
+            display: flex;
+            align-items: center;
             justify-content: center;
             flex-wrap: nowrap;
-            gap: 5px;
-            line-height: 1;
+            gap: 5px;            line-height: 1;
             overflow-x: auto;
             overflow-y: hidden;
         }
@@ -243,11 +239,11 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 15px;
             border-radius: 15px;
-            border: 2px solid rgba(0, 191, 255, 0.4);            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
             max-width: 700px;
         }
-
         .keyboard-row {
             display: flex;
             justify-content: center;
@@ -292,11 +288,11 @@
             transform: scale(0.3);
             transition: all 0.3s ease;
         }
+
         .key:hover::before {
             opacity: 1;
             transform: scale(1);
         }
-
         .key:hover {
             transform: scale(1.1);
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.5);
@@ -341,11 +337,11 @@
         .key.suit::before {
             content: '';
             position: absolute;
-            width: 150%;            height: 150%;
+            width: 150%;
+            height: 150%;
             border-radius: 50%;
             opacity: 0;
-            transform: scale(0.3);
-            transition: all 0.1s ease;
+            transform: scale(0.3);            transition: all 0.1s ease;
         }
 
         .key.suit:not(.hearts):not(.diamonds)::before {
@@ -390,11 +386,11 @@
             box-shadow: 0 0 40px rgba(255, 0, 0, 0.9), 0 0 60px rgba(255, 0, 0, 0.6);
         }
 
-        .key.active-y {            animation: pulseY 2s infinite;
+        .key.active-y {
+            animation: pulseY 2s infinite;
         }
 
-        .key.active-y::before {
-            opacity: 1;
+        .key.active-y::before {            opacity: 1;
             transform: scale(1);
         }
 
@@ -439,11 +435,11 @@
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
             border-color: #00FF64;
             color: #00FF64;
-            transition: all 0.5s ease;            pointer-events: none;
+            transition: all 0.5s ease;
+            pointer-events: none;
             opacity: 0.5;
             cursor: not-allowed;
         }
-
         .key.predict.predict-giant {
             font-size: 3rem;
         }
@@ -488,11 +484,11 @@
             background-position: center;
             z-index: 200;
             flex-direction: column;
-            align-items: center;            justify-content: center;
+            align-items: center;
+            justify-content: center;
         }
 
-        .loading-container {
-            position: relative;
+        .loading-container {            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -537,11 +533,11 @@
         .particle {
             position: absolute;
             width: 8px;
-            height: 8px;            background: #00FFFF;
+            height: 8px;
+            background: #00FFFF;
             border-radius: 50%;
             box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
-
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -586,11 +582,11 @@
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
+
         .card-emoji {
             position: absolute;
             width: 100%;
-            height: 100%;
-            display: flex;
+            height: 100%;            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 33rem;
@@ -635,17 +631,17 @@
             .key.suit { font-size: min(3.5rem, 7vw); }
             .key.predict { width: min(180px, 40vw); font-size: min(2rem, 4vw); }
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
-            #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
+            #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }
+            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
             .card-flip-container { width: 250px; height: 375px; }
             .card-emoji { font-size: 27rem; }
-        }
-    </style>
+        }    </style>
 </head>
 <body>
     <div id="startPage">
         <div class="rotation-container">
             <div class="trail"></div>
-            <button class="start-btn" id="startBtn" onclick="goToKeyboard()">START</button>
+            <button class="start-btn" id="startBtn">START</button>
             <div class="comet-tail" id="cometTail"></div>
         </div>
     </div>
@@ -684,10 +680,10 @@
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="K" onclick="addChar('K')">K</button>
-                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>            </div>
+                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>
+            </div>
         </div>
     </div>
-
     <div id="predictPage">
         <div class="loading-container" id="loadingContainer">
             <div class="loading-ring"></div>
@@ -710,9 +706,6 @@
     </div>
 
     <script>
-        // ============================================
-        // ✅ VARIABLES GLOBALES
-        // ============================================
         var savedCards = [];
         var currentX = null;
         var currentY = null;
@@ -729,11 +722,9 @@
         var longPressTimer = null;
         var longPressDuration = 500;
 
-        // ============================================
-        // ✅ BASIC ORDER (52 CARTES)
-        // ============================================
         var basicOrder = [
-            'A♠', 'A♥', 'A♣', 'A♦',            '2♠', '2♥', '2♣', '2♦',
+            'A♠', 'A♥', 'A♣', 'A♦',
+            '2♠', '2♥', '2♣', '2♦',
             '3♠', '3♥', '3♣', '3♦',
             '4♠', '4♥', '4♣', '4♦',
             '5♠', '5♥', '5♣', '5♦',
@@ -742,14 +733,10 @@
             '8♠', '8♥', '8♣', '8♦',
             '9♠', '9♥', '9♣', '9♦',
             '10♠', '10♥', '10♣', '10♦',
-            'J♠', 'J♥', 'J♣', 'J♦',
-            'Q♠', 'Q♥', 'Q♣', 'Q♦',
+            'J♠', 'J♥', 'J♣', 'J♦',            'Q♠', 'Q♥', 'Q♣', 'Q♦',
             'K♠', 'K♥', 'K♣', 'K♦'
         ];
 
-        // ============================================
-        // ✅ HIGHCARDS (7♠ à Q♦) - INVERSÉ
-        // ============================================
         var highcards = {
             '7♠': '4321', '7♥': '3421', '7♣': '2431', '7♦': '1432',
             '8♠': '4213', '8♥': '3214', '8♣': '2314', '8♦': '1324',
@@ -759,9 +746,6 @@
             'Q♠': '4123', 'Q♥': '3124', 'Q♣': '2134', 'Q♦': '1234'
         };
 
-        // ============================================
-        // ✅ LOWCARDS (A♠ à 6♦) - INVERSÉ
-        // ============================================
         var lowcards = {
             'A♠': '4321', 'A♥': '3421', 'A♣': '2431', 'A♦': '1432',
             '2♠': '4213', '2♥': '3214', '2♣': '2314', '2♦': '1324',
@@ -771,18 +755,13 @@
             '6♠': '4123', '6♥': '3124', '6♣': '2134', '6♦': '1234'
         };
 
-        // ============================================
-        // ✅ KINGSORDER (4 ROIS) - NOUVEAU
-        // ============================================
         var kingsorder = ['K♠', 'K♥', 'K♣', 'K♦'];
 
-        // ============================================
-        // ✅ EMOJIS CARTES
-        // ============================================
         var cardEmojis = {
             'A♠': '🂡', 'A♥': '🂱', 'A♣': '🃑', 'A♦': '🃁',
             '2♠': '🂢', '2♥': '🂲', '2♣': '🃒', '2♦': '🃂',
-            '3♠': '🂣', '3♥': '🂳', '3♣': '🃓', '3♦': '🃃',            '4♠': '🂤', '4♥': '🂴', '4♣': '🃔', '4♦': '🃄',
+            '3♠': '🂣', '3♥': '🂳', '3♣': '🃓', '3♦': '🃃',
+            '4♠': '🂤', '4♥': '🂴', '4♣': '🃔', '4♦': '🃄',
             '5♠': '🂥', '5♥': '🂵', '5♣': '🃕', '5♦': '🃅',
             '6♠': '🂦', '6♥': '🂶', '6♣': '🃖', '6♦': '🃆',
             '7♠': '🂧', '7♥': '🂷', '7♣': '🃗', '7♦': '🃇',
@@ -794,22 +773,42 @@
             'K♠': '🂬', 'K♥': '🂼', 'K♣': '🃜', 'K♦': '🃌'
         };
 
-        // ============================================
-        // ✅ INITIALISATION
-        // ============================================
-        function initApp() {
+        function goToKeyboard() {
+            var predictBtn = document.getElementById('predictBtn');
+            if (predictBtn) {
+                if (cometTailRotation >= 0 && cometTailRotation < 180) {
+                    predictBtn.classList.add('predict-giant');
+                } else {
+                    predictBtn.classList.remove('predict-giant');
+                }
+            }
+            document.getElementById('startPage').style.display = 'none';            document.getElementById('keyboardPage').style.display = 'flex';
+            savedCards = [];
+            currentX = null;
+            currentY = null;
+            isFlipped = false;
+            isFlipping = false;
+            stock = [];
+            reveal = '10♦';
+            updateXButtonAnimation();
+            updateYButtonAnimation();
+            updateDisplay();
+            updatePredictButton();
+        }
+
+        window.addEventListener('load', function() {
             var startBtn = document.getElementById('startBtn');
             if (startBtn) {
-                startBtn.addEventListener('click', goToKeyboard);
+                startBtn.onclick = goToKeyboard;
             }
             initDoubleTap();
             initLongPress();
             trackCometRotation();
-        }
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js');
+            }
+        });
 
-        // ============================================
-        // ✅ DOUBLE-TAP (rotation 0°)
-        // ============================================
         function initDoubleTap() {
             var predictPage = document.getElementById('predictPage');
             if (predictPage) {
@@ -829,13 +828,10 @@
             }
         }
 
-        // ============================================
-        // ✅ APPUI PROLONGÉ (rotation 180°)
-        // ============================================        function initLongPress() {
+        function initLongPress() {
             var predictPage = document.getElementById('predictPage');
             if (predictPage) {
-                predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });
-                predictPage.addEventListener('touchend', handleLongPressEnd);
+                predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });                predictPage.addEventListener('touchend', handleLongPressEnd);
                 predictPage.addEventListener('mousedown', handleLongPressStart);
                 predictPage.addEventListener('mouseup', handleLongPressEnd);
                 predictPage.addEventListener('mouseleave', handleLongPressEnd);
@@ -855,9 +851,6 @@
             }
         }
 
-        // ============================================
-        // ✅ SUIVI ROTATION COMÈTE
-        // ============================================
         function trackCometRotation() {
             var cometTail = document.getElementById('cometTail');
             if (cometTail) {
@@ -874,35 +867,6 @@
             requestAnimationFrame(trackCometRotation);
         }
 
-        // ============================================
-        // ✅ ALLER VERS CLAVIER
-        // ============================================
-        function goToKeyboard() {
-            var predictBtn = document.getElementById('predictBtn');
-            if (predictBtn) {
-                if (cometTailRotation >= 0 && cometTailRotation < 180) {                    predictBtn.classList.add('predict-giant');
-                } else {
-                    predictBtn.classList.remove('predict-giant');
-                }
-            }
-            document.getElementById('startPage').style.display = 'none';
-            document.getElementById('keyboardPage').style.display = 'flex';
-            savedCards = [];
-            currentX = null;
-            currentY = null;
-            isFlipped = false;
-            isFlipping = false;
-            stock = [];
-            reveal = '10♦';
-            updateXButtonAnimation();
-            updateYButtonAnimation();
-            updateDisplay();
-            updatePredictButton();
-        }
-
-        // ============================================
-        // ✅ ANIMATIONS BOUTONS
-        // ============================================
         function updateXButtonAnimation() {
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
@@ -916,8 +880,7 @@
             }
         }
 
-        function updateYButtonAnimation() {
-            var allSuitBtns = document.querySelectorAll('.key.suit');
+        function updateYButtonAnimation() {            var allSuitBtns = document.querySelectorAll('.key.suit');
             for (var i = 0; i < allSuitBtns.length; i++) {
                 allSuitBtns[i].classList.remove('active-y');
             }
@@ -929,7 +892,8 @@
             }
         }
 
-        function updatePredictButton() {            var predictBtn = document.getElementById('predictBtn');
+        function updatePredictButton() {
+            var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
             var displayedCards = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
@@ -955,9 +919,6 @@
             }
         }
 
-        // ============================================
-        // ✅ AFFICHAGE CARTES
-        // ============================================
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             if (!display) return;
@@ -968,8 +929,7 @@
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
                 var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
-            }
-            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
+            }            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
@@ -978,7 +938,8 @@
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '" style="filter: brightness(0.5);">' + currentEmoji + '</span>';
                 } else {
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '">' + currentEmoji + '</span>';
-                }            }
+                }
+            }
             display.innerHTML = newContent;
             attachClickListeners();
         }
@@ -1017,8 +978,7 @@
         }
 
         function addChar(char) {
-            if (values.indexOf(char) >= 0) {
-                if (currentX !== null && currentY !== null) {
+            if (values.indexOf(char) >= 0) {                if (currentX !== null && currentY !== null) {
                     var cardKey = currentX + currentY;
                     if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
                         savedCards.push(cardKey);
@@ -1027,7 +987,8 @@
                 currentX = char;
                 currentY = null;
                 updateXButtonAnimation();
-                updateYButtonAnimation();                updatePredictButton();
+                updateYButtonAnimation();
+                updatePredictButton();
                 updateDisplay();
             } else if (suits.indexOf(char) >= 0) {
                 if (currentX !== null) {
@@ -1040,9 +1001,6 @@
             }
         }
 
-        // ============================================
-        // ✅ CALCULER LE CODE
-        // ============================================
         function calculateCode() {
             stock = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
@@ -1068,66 +1026,42 @@
             return codeArray.join('');
         }
 
-        // ============================================
-        // ✅ ✅ ✅ DÉTERMINER REVEAL (AVEC CHAÎNE ROIS)
-        // ============================================
         function determineReveal(code) {
-            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
-            var carteTrouvee = null;
-            
-            // Trouver carte par code
-            for (var carte in liste) {                if (liste[carte] === code) {
+            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;            var carteTrouvee = null;
+            for (var carte in liste) {
+                if (liste[carte] === code) {
                     carteTrouvee = carte;
                     break;
                 }
             }
-            
-            // CAS 1: Aucune carte trouvée
             if (!carteTrouvee) {
                 reveal = '10♦';
                 return;
             }
-            
-            // CAS 2: Carte trouvée ∉ stock (cas normal)
             if (stock.indexOf(carteTrouvee) === -1) {
                 reveal = carteTrouvee;
                 return;
             }
-            
-            // CAS 3: Carte trouvée ∈ stock (cas particulier - chaîne Rois)
-            // Étape 1: Trier stock par basicOrder
             var sortedStock = stock.slice().sort(function(a, b) {
                 return basicOrder.indexOf(a) - basicOrder.indexOf(b);
             });
-            
-            // Étape 2: Boucle chaîne Rois (max 4 itérations)
             var currentPosition = sortedStock.indexOf(carteTrouvee) + 1;
             var finalKing = null;
-            
             for (var iteration = 0; iteration < 4; iteration++) {
-                // Trouver Roi correspondant
                 var king = kingsorder[currentPosition - 1];
-                
-                // Vérifier si Roi ∉ stock
                 if (sortedStock.indexOf(king) === -1) {
                     finalKing = king;
                     break;
                 }
-                
-                // Roi ∈ stock → continuer chaîne
                 currentPosition = sortedStock.indexOf(king) + 1;
             }
-            
-            // Assigner résultat
             if (finalKing) {
                 reveal = finalKing;
             } else {
-                reveal = '10♦'; // Fallback (théoriquement impossible)
+                reveal = '10♦';
             }
         }
-        // ============================================
-        // ✅ PREDICT
-        // ============================================
+
         function predict() {
             var displayedCards = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
@@ -1142,8 +1076,7 @@
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
                     allDifferent = false;
-                    break;
-                }
+                    break;                }
                 uniqueCards[displayedCards[i]] = true;
             }
             if (!hasFourCards || !allDifferent) {
@@ -1175,9 +1108,7 @@
                 }
             }, 4000);
         }
-        // ============================================
-        // ✅ FLIP CARTE
-        // ============================================
+
         function flipCard() {
             if (isFlipping) return;
             var cardInner = document.getElementById('cardFlipInner');
@@ -1194,17 +1125,13 @@
             } else {
                 cardInner.style.transform = 'rotateY(0deg)';
                 setTimeout(function() {
-                    cardFace.style.display = 'none';
-                    cardBack.style.display = 'flex';
+                    cardFace.style.display = 'none';                    cardBack.style.display = 'flex';
                 }, 400);
                 isFlipped = false;
             }
             setTimeout(function() { isFlipping = false; }, 800);
         }
 
-        // ============================================
-        // ✅ ✅ ✅ EXIT VERS START (AVEC ROTATION)
-        // ============================================
         function exitToStart(rotation) {
             document.getElementById('predictPage').style.display = 'none';
             document.getElementById('startPage').style.display = 'flex';
@@ -1220,10 +1147,9 @@
                 clearTimeout(longPressTimer);
                 longPressTimer = null;
             }
-            
-            // ✅ MANIPULER L'ANIMATION CSS DE LA TRAINÉE
             var cometTail = document.getElementById('cometTail');
-            if (cometTail) {                if (rotation === 180) {
+            if (cometTail) {
+                if (rotation === 180) {
                     cometTail.style.animation = 'none';
                     cometTail.offsetHeight;
                     cometTail.style.animation = 'rotateOnEdge 20s linear infinite';
@@ -1238,13 +1164,6 @@
                 }
             }
         }
-
-        // ============================================
-        // ✅ INITIALISATION
-        // ============================================
-        initApp();
-        document.addEventListener('DOMContentLoaded', initApp);
-        window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
