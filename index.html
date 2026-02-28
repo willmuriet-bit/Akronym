@@ -174,7 +174,7 @@
             z-index: 100;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             padding: 5px;
         }
 
@@ -806,7 +806,6 @@
             initLongPress();
             trackCometRotation();
             
-            // Service Worker Registration
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./sw.js');
             }
@@ -831,8 +830,8 @@
             }
         }
 
-        function initLongPress() {            var predictPage = document.getElementById('predictPage');
-            if (predictPage) {
+        function initLongPress() {
+            var predictPage = document.getElementById('predictPage');            if (predictPage) {
                 predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });
                 predictPage.addEventListener('touchend', handleLongPressEnd);
                 predictPage.addEventListener('mousedown', handleLongPressStart);
@@ -880,8 +879,8 @@
                 if (activeBtn) {
                     activeBtn.classList.add('active-x');
                 }
-            }        }
-
+            }
+        }
         function updateYButtonAnimation() {
             var allSuitBtns = document.querySelectorAll('.key.suit');
             for (var i = 0; i < allSuitBtns.length; i++) {
@@ -929,8 +928,8 @@
             var numToShow = Math.min(savedCards.length, maxSavedCards);
             for (var i = 0; i < numToShow; i++) {
                 var cardKey = savedCards[i];
-                var cardEmoji = cardEmojis[cardKey] || cardKey;                var suit = cardKey.slice(-1);
-                newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
+                var cardEmoji = cardEmojis[cardKey] || cardKey;
+                var suit = cardKey.slice(-1);                newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
@@ -1076,8 +1075,8 @@
             var hasFourCards = (displayedCards.length === 4);
             var allDifferent = true;
             var uniqueCards = {};
-            for (var i = 0; i < displayedCards.length; i++) {                if (uniqueCards[displayedCards[i]]) {
-                    allDifferent = false;
+            for (var i = 0; i < displayedCards.length; i++) {
+                if (uniqueCards[displayedCards[i]]) {                    allDifferent = false;
                     break;
                 }
                 uniqueCards[displayedCards[i]] = true;
@@ -1125,8 +1124,8 @@
                     cardFace.style.display = 'flex';
                 }, 400);
                 isFlipped = true;
-            } else {                cardInner.style.transform = 'rotateY(0deg)';
-                setTimeout(function() {
+            } else {
+                cardInner.style.transform = 'rotateY(0deg)';                setTimeout(function() {
                     cardFace.style.display = 'none';
                     cardBack.style.display = 'flex';
                 }, 400);
