@@ -7,8 +7,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Akronym">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="small-192.png">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./small-192.png">
     <title>Akronym</title>
     <style>
         * {
@@ -806,15 +806,9 @@
             initLongPress();
             trackCometRotation();
             
-            // ✅ PWA Service Worker Registration
+            // Service Worker Registration
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+                navigator.serviceWorker.register('./sw.js');
             }
         });
 
@@ -831,13 +825,13 @@
             if (tapLength < 300 && tapLength > 0) {
                 e.preventDefault();
                 exitToStart(0);
-                lastTapTime = 0;            } else {
+                lastTapTime = 0;
+            } else {
                 lastTapTime = currentTime;
             }
         }
 
-        function initLongPress() {
-            var predictPage = document.getElementById('predictPage');
+        function initLongPress() {            var predictPage = document.getElementById('predictPage');
             if (predictPage) {
                 predictPage.addEventListener('touchstart', handleLongPressStart, { passive: false });
                 predictPage.addEventListener('touchend', handleLongPressEnd);
@@ -880,13 +874,13 @@
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
                 allValueBtns[i].classList.remove('active-x');
-            }            if (currentX !== null) {
+            }
+            if (currentX !== null) {
                 var activeBtn = document.querySelector('.value-btn[data-value="' + currentX + '"]');
                 if (activeBtn) {
                     activeBtn.classList.add('active-x');
                 }
-            }
-        }
+            }        }
 
         function updateYButtonAnimation() {
             var allSuitBtns = document.querySelectorAll('.key.suit');
@@ -929,13 +923,13 @@
         }
 
         function updateDisplay() {
-            var display = document.getElementById('displayArea');            if (!display) return;
+            var display = document.getElementById('displayArea');
+            if (!display) return;
             var newContent = '';
             var numToShow = Math.min(savedCards.length, maxSavedCards);
             for (var i = 0; i < numToShow; i++) {
                 var cardKey = savedCards[i];
-                var cardEmoji = cardEmojis[cardKey] || cardKey;
-                var suit = cardKey.slice(-1);
+                var cardEmoji = cardEmojis[cardKey] || cardKey;                var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
@@ -978,13 +972,13 @@
             } else if (savedCards.length > 0) {
                 savedCards.pop();
             }
-            currentX = null;            currentY = null;
+            currentX = null;
+            currentY = null;
             updateXButtonAnimation();
             updateYButtonAnimation();
             updatePredictButton();
             updateDisplay();
         }
-
         function addChar(char) {
             if (values.indexOf(char) >= 0) {
                 if (currentX !== null && currentY !== null) {
@@ -1027,13 +1021,13 @@
             var cardNumbers = {};
             for (var i = 0; i < cardPositions.length; i++) {
                 cardNumbers[cardPositions[i].card] = i + 1;
-            }            var codeArray = [];
+            }
+            var codeArray = [];
             for (var i = 0; i < stock.length; i++) {
                 codeArray.push(cardNumbers[stock[i]]);
             }
             return codeArray.join('');
         }
-
         function determineReveal(code) {
             var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
             var carteTrouvee = null;
@@ -1076,13 +1070,13 @@
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 displayedCards.push(savedCards[i]);
             }
-            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {                displayedCards.push(currentX + currentY);
+            if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
+                displayedCards.push(currentX + currentY);
             }
             var hasFourCards = (displayedCards.length === 4);
             var allDifferent = true;
             var uniqueCards = {};
-            for (var i = 0; i < displayedCards.length; i++) {
-                if (uniqueCards[displayedCards[i]]) {
+            for (var i = 0; i < displayedCards.length; i++) {                if (uniqueCards[displayedCards[i]]) {
                     allDifferent = false;
                     break;
                 }
@@ -1125,13 +1119,13 @@
             var cardFace = document.getElementById('cardFace');
             isFlipping = true;
             if (!isFlipped) {
-                cardInner.style.transform = 'rotateY(180deg)';                setTimeout(function() {
+                cardInner.style.transform = 'rotateY(180deg)';
+                setTimeout(function() {
                     cardBack.style.display = 'none';
                     cardFace.style.display = 'flex';
                 }, 400);
                 isFlipped = true;
-            } else {
-                cardInner.style.transform = 'rotateY(0deg)';
+            } else {                cardInner.style.transform = 'rotateY(0deg)';
                 setTimeout(function() {
                     cardFace.style.display = 'none';
                     cardBack.style.display = 'flex';
@@ -1174,4 +1168,5 @@
             }
         }
     </script>
-</body></html>manifest.json
+</body>
+</html>
