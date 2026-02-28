@@ -22,7 +22,7 @@
         }
 
         body {
-            background-image: url('background.jpg');
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #0a0a2e 100%);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -170,7 +170,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('background.jpg');
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #0a0a2e 100%);
             background-size: cover;
             background-position: center;
             z-index: 100;
@@ -481,7 +481,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('background.jpg');
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #0a0a2e 100%);
             background-size: cover;
             background-position: center;
             z-index: 200;
@@ -643,7 +643,7 @@
     <div id="startPage">
         <div class="rotation-container">
             <div class="trail"></div>
-            <button class="start-btn" id="startBtn">START</button>
+            <button class="start-btn" id="startBtn" onclick="goToKeyboard()">START</button>
             <div class="comet-tail" id="cometTail"></div>
         </div>
     </div>
@@ -786,14 +786,15 @@
         };
 
         // ============================================
-        // ✅ INITIALISATION AU CHARGEMENT
+        // ✅ INITIALISATION MULTIPLE (GitHub Compatible)
         // ============================================
-        window.addEventListener('load', function() {
-            console.log('✅ Page chargée - Initialisation...');
+        function initApp() {
+            console.log('✅ Initialisation de l\'application...');
             initStartButton();
             initDoubleTap();
             trackCometRotation();
-        });
+            console.log('✅ Application initialisée avec succès!');
+        }
 
         // ============================================
         // ✅ INITIALISATION BOUTON START
@@ -801,6 +802,7 @@
         function initStartButton() {
             var startBtn = document.getElementById('startBtn');
             if (startBtn) {
+                // ✅ DOUBLE MÉTHODE : onclick inline + addEventListener
                 startBtn.addEventListener('click', goToKeyboard);
                 console.log('✅ Bouton START initialisé');
             } else {
@@ -829,9 +831,9 @@
             if (tapLength < 300 && tapLength > 0) {
                 e.preventDefault();
                 exitToStart();
-                lastTapTime = 0;
-            } else {
-                lastTapTime = currentTime;            }
+                lastTapTime = 0;            } else {
+                lastTapTime = currentTime;
+            }
         }
 
         // ============================================
@@ -878,9 +880,9 @@
             
             startPage.style.display = 'none';
             keyboardPage.style.display = 'flex';
-            
-            savedCards = [];
-            currentX = null;            currentY = null;
+                        savedCards = [];
+            currentX = null;
+            currentY = null;
             isFlipped = false;
             isFlipping = false;
             stock = [];
@@ -927,9 +929,9 @@
                 }
             }
         }
-
         // ============================================
-        // ✅ BOUTON PREDICT        // ============================================
+        // ✅ BOUTON PREDICT
+        // ============================================
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
@@ -976,9 +978,9 @@
             for (var i = 0; i < numToShow; i++) {
                 var cardKey = savedCards[i];
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
-                var suit = cardKey.slice(-1);
-                newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
+                var suit = cardKey.slice(-1);                newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
+
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
@@ -1025,9 +1027,9 @@
         // ============================================
         // ✅ SUPPRIMER DERNIÈRE CARTE
         // ============================================
-        function deleteLastCard() {
-            if (currentX !== null && currentY !== null) {
-            } else if (savedCards.length > 0) {                savedCards.pop();
+        function deleteLastCard() {            if (currentX !== null && currentY !== null) {
+            } else if (savedCards.length > 0) {
+                savedCards.pop();
             }
             
             currentX = null;
@@ -1069,21 +1071,18 @@
         }
 
         // ============================================
-        // ✅ ✅ ✅ CALCULER LE CODE (SANS INVERSION)
+        // ✅ CALCULER LE CODE (SANS INVERSION)
         // ============================================
         function calculateCode() {
             console.log('🔐 calculateCode() appelé');
             console.log('📦 savedCards:', savedCards);
-            console.log('📦 currentX:', currentX, 'currentY:', currentY);
+            console.log('📦 currentX:', currentX, 'currentY:', currentY);            
+            stock = [];
             
-            // 1. Créer le stock (ordre d'affichage)            stock = [];
-            
-            // Ajouter les cartes sauvegardées
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 stock.push(savedCards[i]);
             }
             
-            // ✅ AJOUTER LA CARTE EN COURS (currentX + currentY)
             if (currentX !== null && currentY !== null && stock.length < 4) {
                 stock.push(currentX + currentY);
                 console.log('➕ Carte en cours ajoutée au stock:', currentX + currentY);
@@ -1091,7 +1090,6 @@
             
             console.log('📦 STOCK FINAL:', stock);
             
-            // 2. Trouver la position de chaque carte dans basicOrder
             var cardPositions = [];
             for (var i = 0; i < stock.length; i++) {
                 var position = basicOrder.indexOf(stock[i]);
@@ -1103,29 +1101,23 @@
                 console.log('📍 Position de', stock[i], '=', position);
             }
             
-            // 3. Trier par position croissante
             cardPositions.sort(function(a, b) {
                 return a.position - b.position;
             });
             
-            // 4. Attribuer les numéros 1-4
             var cardNumbers = {};
             for (var i = 0; i < cardPositions.length; i++) {
                 cardNumbers[cardPositions[i].card] = i + 1;
             }
             
-            // 5. Créer le code dans l'ordre du stock
             var codeArray = [];
             for (var i = 0; i < stock.length; i++) {
                 codeArray.push(cardNumbers[stock[i]]);
             }
             
-            // 6. ✅ PAS D'INVERSION - On garde l'ordre du stock
-            // codeArray.reverse(); ← SUPPRIMÉ
-            
-            // 7. Retourner le code en string
             var code = codeArray.join('');
-            console.log('🔐 Code calculé:', code);            return code;
+            console.log('🔐 Code calculé:', code);
+            return code;
         }
 
         // ============================================
@@ -1133,13 +1125,10 @@
         // ============================================
         function determineReveal(code) {
             console.log('🎯 Détermination de reveal avec code:', code);
-            
-            // 1. Choisir la liste selon startRotation
-            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
+                        var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
             var listeName = (startRotation >= 0 && startRotation < 180) ? 'HIGHCARDS' : 'LOWCARDS';
             console.log('📋 Liste choisie:', listeName, '(rotation:', startRotation, '°)');
             
-            // 2. Trouver la carte avec ce code
             var carteTrouvee = null;
             for (var carte in liste) {
                 if (liste[carte] === code) {
@@ -1150,7 +1139,6 @@
             
             console.log('🔍 Carte trouvée:', carteTrouvee);
             
-            // 3. Vérifier si la carte n'est pas dans le stock
             if (carteTrouvee && stock.indexOf(carteTrouvee) === -1) {
                 reveal = carteTrouvee;
                 console.log('✅ reveal défini:', reveal);
@@ -1174,7 +1162,8 @@
                 displayedCards.push(currentX + currentY);
             }
             
-            var hasFourCards = (displayedCards.length === 4);            var allDifferent = true;
+            var hasFourCards = (displayedCards.length === 4);
+            var allDifferent = true;
             var uniqueCards = {};
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
@@ -1185,28 +1174,21 @@
             }
             
             if (!hasFourCards || !allDifferent) {
-                console.log('❌ PREDICT refusé');
-                return;
+                console.log('❌ PREDICT refusé');                return;
             }
             
-            // ✅ ENREGISTRER startRotation
             startRotation = cometTailRotation;
             console.log('📍 startRotation enregistrée:', startRotation, '°');
             
-            // ✅ CALCULER LE CODE
             var code = calculateCode();
-            
-            // ✅ DÉTERMINER REVEAL
             determineReveal(code);
             
-            // ✅ NAVIGATION VERS PAGE PREDICT
             document.getElementById('keyboardPage').style.display = 'none';
             document.getElementById('predictPage').style.display = 'flex';
             
             document.getElementById('loadingContainer').style.display = 'flex';
             document.getElementById('cardFlipContainer').style.display = 'none';
             
-            // ✅ RÉINITIALISER LA CARTE
             isFlipped = false;
             isFlipping = false;
             document.getElementById('cardFlipInner').style.transform = 'rotateY(0deg)';
@@ -1217,13 +1199,12 @@
                 document.getElementById('loadingContainer').style.display = 'none';
                 document.getElementById('cardFlipContainer').style.display = 'block';
                 
-                // ✅ METTRE À JOUR L'EMOJI DE REVEAL
                 var revealEmoji = cardEmojis[reveal] || '🃊';
                 var revealSuit = reveal.slice(-1);
                 var cardFace = document.getElementById('cardFace');
                 cardFace.textContent = revealEmoji;
                 
-                // ✅ DÉFINIR LA COULEUR SELON L'ENSEIGNE                if (revealSuit === '♥' || revealSuit === '♦') {
+                if (revealSuit === '♥' || revealSuit === '♦') {
                     cardFace.style.color = '#FF0000';
                 } else {
                     cardFace.style.color = '#FFFFFF';
@@ -1242,8 +1223,7 @@
             var cardInner = document.getElementById('cardFlipInner');
             var cardBack = document.getElementById('cardBack');
             var cardFace = document.getElementById('cardFace');
-            
-            isFlipping = true;
+                        isFlipping = true;
             
             if (!isFlipped) {
                 cardInner.style.transform = 'rotateY(180deg)';
@@ -1272,7 +1252,8 @@
             console.log('🃏 Carte retournée ! isFlipped:', isFlipped);
         }
 
-        // ============================================        // ✅ EXIT VERS START (DOUBLE-TAP)
+        // ============================================
+        // ✅ EXIT VERS START (DOUBLE-TAP)
         // ============================================
         function exitToStart() {
             console.log('🔄 Double-tap détecté - Retour à START');
@@ -1292,6 +1273,12 @@
             
             console.log('✅ Toutes les variables réinitialisées');
         }
+        // ============================================
+        // ✅ INITIALISATION IMMÉDIATE + DOMContentLoaded + LOAD
+        // ============================================
+        initApp();
+        document.addEventListener('DOMContentLoaded', initApp);
+        window.addEventListener('load', initApp);
     </script>
 </body>
 </html>
