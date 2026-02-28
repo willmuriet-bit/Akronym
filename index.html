@@ -22,7 +22,6 @@
         }
 
         body {
-            /* ✅ CORRECTION: background-image en premier + fallback */
             background-color: #0a0a2e;
             background-image: url('background.jpg');
             background-size: cover;
@@ -40,18 +39,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1;
         }
 
         .rotation-container {
             position: relative;
             width: 300px;
             height: 300px;
-            display: flex;            justify-content: center;
-            align-items: center;
-            z-index: 1;
-        }
+            display: flex;
+            justify-content: center;
+            align-items: center;        }
 
+        /* ✅ TRAÎNÉE ORIGINALE - CODE EXACT */
         .comet-tail {
             position: absolute;
             width: 300px;
@@ -61,7 +59,7 @@
             margin-top: -150px;
             margin-left: -150px;
             animation: rotateOnEdge 20s linear infinite;
-            z-index: 2;
+            z-index: 15;
             pointer-events: none;
         }
 
@@ -96,9 +94,9 @@
                 from 0deg,
                 rgba(0, 255, 255, 1) 0deg,
                 rgba(0, 255, 255, 0.8) 15deg,
-                rgba(0, 191, 255, 0.5) 40deg,                transparent 90deg
-            );
-            filter: blur(10px);
+                rgba(0, 191, 255, 0.5) 40deg,
+                transparent 90deg
+            );            filter: blur(10px);
             transform: rotate(-90deg);
             opacity: 0.9;
             pointer-events: none;
@@ -111,7 +109,7 @@
             border: 2px dashed rgba(0, 191, 255, 0.5);
             border-radius: 50%;
             box-sizing: border-box;
-            z-index: 1;
+            z-index: 5;
             box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
             pointer-events: none;
         }
@@ -145,9 +143,9 @@
             -webkit-user-select: none;
         }
 
-        .start-btn:hover {            transform: scale(1.02);
-            box-shadow: 
-                0 12px 35px rgba(0, 0, 0, 0.6),
+        .start-btn:hover {
+            transform: scale(1.02);
+            box-shadow:                 0 12px 35px rgba(0, 0, 0, 0.6),
                 0 25px 70px rgba(0, 0, 0, 0.5),
                 inset 0 -8px 15px rgba(0, 0, 0, 0.4),
                 inset 0 8px 15px rgba(255, 255, 255, 0.6),
@@ -158,11 +156,6 @@
 
         .start-btn:active {
             transform: scale(0.98);
-        }
-
-        .start-btn:focus,
-        .start-btn:focus-visible {
-            outline: none;
         }
 
         @keyframes rotateOnEdge {
@@ -194,14 +187,14 @@
             min-height: 220px;
             background: rgba(0, 0, 0, 0.7);
             border: 3px solid rgba(0, 191, 255, 0.6);
-            border-radius: 15px;            margin: 10px 0;
+            border-radius: 15px;
+            margin: 10px 0;
             padding: 20px 25px;
             font-size: 5rem;
             color: #00FFFF;
             text-align: center;
             box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
-            display: flex;
-            align-items: center;
+            display: flex;            align-items: center;
             justify-content: center;
             flex-wrap: nowrap;
             gap: 5px;
@@ -243,14 +236,14 @@
         }
 
         .display-card.last-card:active {
-            transform: scale(0.9);        }
+            transform: scale(0.9);
+        }
 
         .keyboard-container {
             background: rgba(0, 0, 0, 0.6);
             padding: 15px;
             border-radius: 15px;
-            border: 2px solid rgba(0, 191, 255, 0.4);
-            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.4);            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
             width: 95vw;
             max-width: 700px;
         }
@@ -292,13 +285,13 @@
             content: '';
             position: absolute;
             width: 150%;
-            height: 150%;            border-radius: 50%;
+            height: 150%;
+            border-radius: 50%;
             background: radial-gradient(circle, rgba(0, 191, 255, 0.7) 0%, rgba(0, 191, 255, 0.3) 40%, transparent 70%);
             opacity: 0;
             transform: scale(0.3);
             transition: all 0.3s ease;
         }
-
         .key:hover::before {
             opacity: 1;
             transform: scale(1);
@@ -341,14 +334,14 @@
             }
         }
 
-        .key.suit {            font-size: 3.5rem;
+        .key.suit {
+            font-size: 3.5rem;
         }
 
         .key.suit::before {
             content: '';
             position: absolute;
-            width: 150%;
-            height: 150%;
+            width: 150%;            height: 150%;
             border-radius: 50%;
             opacity: 0;
             transform: scale(0.3);
@@ -391,13 +384,13 @@
             opacity: 1;
             transform: scale(1);
         }
+
         .key.diamonds:active {
             transform: scale(0.95);
             box-shadow: 0 0 40px rgba(255, 0, 0, 0.9), 0 0 60px rgba(255, 0, 0, 0.6);
         }
 
-        .key.active-y {
-            animation: pulseY 2s infinite;
+        .key.active-y {            animation: pulseY 2s infinite;
         }
 
         .key.active-y::before {
@@ -439,14 +432,14 @@
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
         }
 
-        .key.predict {            width: 180px;
+        .key.predict {
+            width: 180px;
             border-radius: 40px;
             font-size: 2rem;
             background: linear-gradient(180deg, rgba(0, 255, 100, 0.3) 0%, rgba(0, 200, 80, 0.3) 100%);
             border-color: #00FF64;
             color: #00FF64;
-            transition: all 0.5s ease;
-            pointer-events: none;
+            transition: all 0.5s ease;            pointer-events: none;
             opacity: 0.5;
             cursor: not-allowed;
         }
@@ -488,14 +481,14 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;            background-color: #0a0a2e;
+            height: 100%;
+            background-color: #0a0a2e;
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             z-index: 200;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: center;            justify-content: center;
         }
 
         .loading-container {
@@ -537,14 +530,14 @@
         .loading-particles {
             position: absolute;
             width: 100%;
-            height: 100%;            animation: spin 3s linear infinite;
+            height: 100%;
+            animation: spin 3s linear infinite;
         }
 
         .particle {
             position: absolute;
             width: 8px;
-            height: 8px;
-            background: #00FFFF;
+            height: 8px;            background: #00FFFF;
             border-radius: 50%;
             box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
@@ -586,13 +579,13 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
-
         .card-emoji {
             position: absolute;
             width: 100%;
@@ -635,14 +628,14 @@
 
         @media (max-width: 400px) {
             .key {
-                width: min(80px, 18vw);                height: min(80px, 18vw);
+                width: min(80px, 18vw);
+                height: min(80px, 18vw);
                 font-size: min(2.8rem, 5vw);
             }
             .key.suit { font-size: min(3.5rem, 7vw); }
             .key.predict { width: min(180px, 40vw); font-size: min(2rem, 4vw); }
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
-            #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }
-            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
+            #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }            .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
             .card-flip-container { width: 250px; height: 375px; }
             .card-emoji { font-size: 27rem; }
         }
@@ -684,14 +677,14 @@
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="9" onclick="addChar('9')">9</button>
-                <button class="key value-btn" data-value="10" onclick="addChar('10')">10</button>                <button class="key value-btn" data-value="J" onclick="addChar('J')">J</button>
+                <button class="key value-btn" data-value="10" onclick="addChar('10')">10</button>
+                <button class="key value-btn" data-value="J" onclick="addChar('J')">J</button>
                 <button class="key value-btn" data-value="Q" onclick="addChar('Q')">Q</button>
             </div>
 
             <div class="keyboard-row">
                 <button class="key value-btn" data-value="K" onclick="addChar('K')">K</button>
-                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>
-            </div>
+                <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>            </div>
         </div>
     </div>
 
@@ -733,14 +726,14 @@
 
         var basicOrder = [
             'A♠', 'A♥', 'A♣', 'A♦',
-            '2♠', '2♥', '2♣', '2♦',            '3♠', '3♥', '3♣', '3♦',
+            '2♠', '2♥', '2♣', '2♦',
+            '3♠', '3♥', '3♣', '3♦',
             '4♠', '4♥', '4♣', '4♦',
             '5♠', '5♥', '5♣', '5♦',
             '6♠', '6♥', '6♣', '6♦',
             '7♠', '7♥', '7♣', '7♦',
             '8♠', '8♥', '8♣', '8♦',
-            '9♠', '9♥', '9♣', '9♦',
-            '10♠', '10♥', '10♣', '10♦',
+            '9♠', '9♥', '9♣', '9♦',            '10♠', '10♥', '10♣', '10♦',
             'J♠', 'J♥', 'J♣', 'J♦',
             'Q♠', 'Q♥', 'Q♣', 'Q♦',
             'K♠', 'K♥', 'K♣', 'K♦'
@@ -781,17 +774,15 @@
         };
 
         function initApp() {
-            console.log('✅ Initialisation...');
-            var startBtn = document.getElementById('startBtn');            if (startBtn) {
+            var startBtn = document.getElementById('startBtn');
+            if (startBtn) {
                 startBtn.addEventListener('click', goToKeyboard);
-                console.log('✅ START button ready');
             }
             initDoubleTap();
             trackCometRotation();
         }
 
-        function initDoubleTap() {
-            var predictPage = document.getElementById('predictPage');
+        function initDoubleTap() {            var predictPage = document.getElementById('predictPage');
             if (predictPage) {
                 predictPage.addEventListener('click', handleDoubleTap);
             }
@@ -826,29 +817,22 @@
         }
 
         function goToKeyboard() {
-            console.log('🎯 START clicked!');
-            var startPage = document.getElementById('startPage');
-            var keyboardPage = document.getElementById('keyboardPage');
             var predictBtn = document.getElementById('predictBtn');
-            
-            if (predictBtn) {                if (cometTailRotation >= 0 && cometTailRotation < 180) {
+            if (predictBtn) {
+                if (cometTailRotation >= 0 && cometTailRotation < 180) {
                     predictBtn.classList.add('predict-giant');
                 } else {
                     predictBtn.classList.remove('predict-giant');
                 }
             }
-            
-            startPage.style.display = 'none';
-            keyboardPage.style.display = 'flex';
-            
+            document.getElementById('startPage').style.display = 'none';
+            document.getElementById('keyboardPage').style.display = 'flex';
             savedCards = [];
             currentX = null;
             currentY = null;
             isFlipped = false;
-            isFlipping = false;
-            stock = [];
+            isFlipping = false;            stock = [];
             reveal = '10♦';
-            
             updateXButtonAnimation();
             updateYButtonAnimation();
             updateDisplay();
@@ -880,10 +864,10 @@
                 }
             }
         }
+
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
-            
             var displayedCards = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 displayedCards.push(savedCards[i]);
@@ -891,18 +875,15 @@
             if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
                 displayedCards.push(currentX + currentY);
             }
-            
             var hasFourCards = (displayedCards.length === 4);
             var allDifferent = true;
             var uniqueCards = {};
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
-                    allDifferent = false;
-                    break;
+                    allDifferent = false;                    break;
                 }
                 uniqueCards[displayedCards[i]] = true;
             }
-            
             if (hasFourCards && allDifferent) {
                 predictBtn.classList.add('predict-active');
             } else {
@@ -913,29 +894,25 @@
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             if (!display) return;
-            
             var newContent = '';
             var numToShow = Math.min(savedCards.length, maxSavedCards);
-            
             for (var i = 0; i < numToShow; i++) {
                 var cardKey = savedCards[i];
                 var cardEmoji = cardEmojis[cardKey] || cardKey;
                 var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
-
             if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
                 var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
                 var suit = currentCard.slice(-1);
-                                if (isDuplicate) {
+                if (isDuplicate) {
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '" style="filter: brightness(0.5);">' + currentEmoji + '</span>';
                 } else {
                     newContent += '<span class="display-card last-card" data-suit="' + suit + '">' + currentEmoji + '</span>';
                 }
             }
-
             display.innerHTML = newContent;
             attachClickListeners();
         }
@@ -943,19 +920,16 @@
         function attachClickListeners() {
             var display = document.getElementById('displayArea');
             if (!display) return;
-            
             var allCards = display.querySelectorAll('.display-card');
             for (var i = 0; i < allCards.length; i++) {
                 allCards[i].classList.remove('last-card');
                 allCards[i].onclick = null;
                 allCards[i].ontouchstart = null;
             }
-            
             if (allCards.length > 0) {
                 var lastCard = allCards[allCards.length - 1];
                 lastCard.classList.add('last-card');
-                lastCard.onclick = deleteLastCard;
-                lastCard.ontouchstart = function(e) {
+                lastCard.onclick = deleteLastCard;                lastCard.ontouchstart = function(e) {
                     e.preventDefault();
                     deleteLastCard();
                 };
@@ -978,7 +952,8 @@
         function addChar(char) {
             if (values.indexOf(char) >= 0) {
                 if (currentX !== null && currentY !== null) {
-                    var cardKey = currentX + currentY;                    if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
+                    var cardKey = currentX + currentY;
+                    if (savedCards.indexOf(cardKey) < 0 && savedCards.length < maxSavedCards) {
                         savedCards.push(cardKey);
                     }
                 }
@@ -1003,31 +978,26 @@
             stock = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 stock.push(savedCards[i]);
-            }
-            if (currentX !== null && currentY !== null && stock.length < 4) {
+            }            if (currentX !== null && currentY !== null && stock.length < 4) {
                 stock.push(currentX + currentY);
             }
-            
             var cardPositions = [];
             for (var i = 0; i < stock.length; i++) {
                 var position = basicOrder.indexOf(stock[i]);
                 cardPositions.push({ card: stock[i], position: position, index: i });
             }
-            
             cardPositions.sort(function(a, b) { return a.position - b.position; });
-            
             var cardNumbers = {};
             for (var i = 0; i < cardPositions.length; i++) {
                 cardNumbers[cardPositions[i].card] = i + 1;
             }
-            
             var codeArray = [];
             for (var i = 0; i < stock.length; i++) {
                 codeArray.push(cardNumbers[stock[i]]);
             }
-            
             return codeArray.join('');
         }
+
         function determineReveal(code) {
             var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
             var carteTrouvee = null;
@@ -1037,7 +1007,6 @@
                     break;
                 }
             }
-            
             if (carteTrouvee && stock.indexOf(carteTrouvee) === -1) {
                 reveal = carteTrouvee;
             } else {
@@ -1053,45 +1022,37 @@
             if (currentX !== null && currentY !== null && displayedCards.length < maxSavedCards) {
                 displayedCards.push(currentX + currentY);
             }
-            
             var hasFourCards = (displayedCards.length === 4);
             var allDifferent = true;
             var uniqueCards = {};
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
-                    allDifferent = false;
-                    break;
+                    allDifferent = false;                    break;
                 }
                 uniqueCards[displayedCards[i]] = true;
             }
-            
             if (!hasFourCards || !allDifferent) {
                 return;
             }
-            
             startRotation = cometTailRotation;
             var code = calculateCode();
             determineReveal(code);
-            
             document.getElementById('keyboardPage').style.display = 'none';
             document.getElementById('predictPage').style.display = 'flex';
             document.getElementById('loadingContainer').style.display = 'flex';
-            document.getElementById('cardFlipContainer').style.display = 'none';            
+            document.getElementById('cardFlipContainer').style.display = 'none';
             isFlipped = false;
             isFlipping = false;
             document.getElementById('cardFlipInner').style.transform = 'rotateY(0deg)';
             document.getElementById('cardBack').style.display = 'flex';
             document.getElementById('cardFace').style.display = 'none';
-            
             setTimeout(function() {
                 document.getElementById('loadingContainer').style.display = 'none';
                 document.getElementById('cardFlipContainer').style.display = 'block';
-                
                 var revealEmoji = cardEmojis[reveal] || '🃊';
                 var revealSuit = reveal.slice(-1);
                 var cardFace = document.getElementById('cardFace');
                 cardFace.textContent = revealEmoji;
-                
                 if (revealSuit === '♥' || revealSuit === '♦') {
                     cardFace.style.color = '#FF0000';
                 } else {
@@ -1102,13 +1063,10 @@
 
         function flipCard() {
             if (isFlipping) return;
-            
             var cardInner = document.getElementById('cardFlipInner');
             var cardBack = document.getElementById('cardBack');
             var cardFace = document.getElementById('cardFace');
-            
             isFlipping = true;
-            
             if (!isFlipped) {
                 cardInner.style.transform = 'rotateY(180deg)';
                 setTimeout(function() {
@@ -1118,19 +1076,17 @@
                 isFlipped = true;
             } else {
                 cardInner.style.transform = 'rotateY(0deg)';
-                setTimeout(function() {
-                    cardFace.style.display = 'none';
+                setTimeout(function() {                    cardFace.style.display = 'none';
                     cardBack.style.display = 'flex';
                 }, 400);
                 isFlipped = false;
             }
-            
-            setTimeout(function() { isFlipping = false; }, 800);        }
+            setTimeout(function() { isFlipping = false; }, 800);
+        }
 
         function exitToStart() {
             document.getElementById('predictPage').style.display = 'none';
             document.getElementById('startPage').style.display = 'flex';
-            
             savedCards = [];
             currentX = null;
             currentY = null;
