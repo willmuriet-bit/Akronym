@@ -209,6 +209,8 @@
             min-width: 0;
             flex-shrink: 0;
             white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .display-card[data-suit="♥"],
@@ -241,9 +243,9 @@
             padding: 15px;
             border-radius: 15px;
             border: 2px solid rgba(0, 191, 255, 0.4);
-            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
-            width: 95vw;
-            max-width: 700px;        }
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);            width: 95vw;
+            max-width: 700px;
+        }
 
         .keyboard-row {
             display: flex;
@@ -290,9 +292,9 @@
             transition: all 0.3s ease;
         }
 
-        .key:hover::before {
-            opacity: 1;
-            transform: scale(1);        }
+        .key:hover::before {            opacity: 1;
+            transform: scale(1);
+        }
 
         .key:hover {
             transform: scale(1.1);
@@ -339,9 +341,9 @@
             content: '';
             position: absolute;
             width: 150%;
-            height: 150%;
-            border-radius: 50%;
-            opacity: 0;            transform: scale(0.3);
+            height: 150%;            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.3);
             transition: all 0.1s ease;
         }
 
@@ -388,8 +390,8 @@
         }
 
         .key.active-y {
-            animation: pulseY 2s infinite;
-        }
+            animation: pulseY 2s infinite;        }
+
         .key.active-y::before {
             opacity: 1;
             transform: scale(1);
@@ -437,9 +439,9 @@
             border-color: #00FF64;
             color: #00FF64;
             transition: all 0.5s ease;
-            pointer-events: none;
-            opacity: 0.5;
-            cursor: not-allowed;        }
+            pointer-events: none;            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
         .key.predict.predict-giant {
             font-size: 3rem;
@@ -487,8 +489,8 @@
             align-items: center;
             justify-content: center;
         }
-
-        .loading-container {            position: relative;
+        .loading-container {
+            position: relative;
             width: 200px;
             height: 200px;
             display: flex;
@@ -535,9 +537,9 @@
             width: 8px;
             height: 8px;
             background: #00FFFF;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
+            border-radius: 50%;            box-shadow: 0 0 10px #00FFFF, 0 0 20px #00BFFF;
         }
+
         .particle:nth-child(1) { top: 0; left: 50%; animation: particleFloat 1s ease-in-out infinite; }
         .particle:nth-child(2) { top: 25%; right: 10%; animation: particleFloat 1.2s ease-in-out infinite 0.2s; background: #00FF64; }
         .particle:nth-child(3) { bottom: 25%; left: 10%; animation: particleFloat 1.4s ease-in-out infinite 0.4s; background: #FFD700; }
@@ -584,9 +586,9 @@
         }
 
         .card-emoji {
-            position: absolute;
-            width: 100%;
-            height: 100%;            display: flex;
+            position: absolute;            width: 100%;
+            height: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 33rem;
@@ -622,48 +624,6 @@
             }
         }
 
-        .exit-btn {
-            position: absolute;
-            bottom: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(200, 200, 200, 0.3) 100%);
-            border: 2px solid #FFFFFF;
-            color: #FFFFFF;
-            padding: 15px 40px;
-            border-radius: 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            animation: pulseWhite 4s infinite;            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .exit-btn.visible {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .exit-btn:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-        }
-
-        @keyframes pulseWhite {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-                opacity: 0.5;
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 255, 255, 0.5);
-                opacity: 1;
-            }
-        }
-
         @media (max-width: 400px) {
             .key {
                 width: min(80px, 18vw);
@@ -675,16 +635,15 @@
             .key.predict.predict-giant { font-size: min(3rem, 6vw); }
             #displayArea { min-height: 220px; gap: 5px; padding: 20px 25px; }
             .display-card { font-size: clamp(7.5rem, 14vw, 11rem); }
-            .card-flip-container { width: 250px; height: 375px; }
-            .card-emoji { font-size: 27rem; }
-            .exit-btn { bottom: -120px; font-size: 1.2rem; padding: 12px 30px; }
+            .card-flip-container { width: 250px; height: 375px; }            .card-emoji { font-size: 27rem; }
         }
     </style>
 </head>
 <body>
     <div id="startPage">
         <div class="rotation-container">
-            <div class="trail"></div>            <button class="start-btn" id="startBtn">START</button>
+            <div class="trail"></div>
+            <button class="start-btn" id="startBtn">START</button>
             <div class="comet-tail" id="cometTail"></div>
         </div>
     </div>
@@ -725,15 +684,15 @@
                 <button class="key value-btn" data-value="K" onclick="addChar('K')">K</button>
                 <button class="key predict" id="predictBtn" onclick="predict()">PREDICT</button>
             </div>
-        </div>
-    </div>
+        </div>    </div>
 
     <div id="predictPage">
         <div class="loading-container" id="loadingContainer">
             <div class="loading-ring"></div>
             <div class="loading-ring"></div>
             <div class="loading-ring"></div>
-            <div class="loading-particles">                <div class="particle"></div>
+            <div class="loading-particles">
+                <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
@@ -743,15 +702,15 @@
         <div class="card-flip-container" id="cardFlipContainer" onclick="flipCard()">
             <div class="card-flip-inner" id="cardFlipInner">
                 <div class="card-emoji back" id="cardBack">🂠</div>
-                <div class="card-emoji face" id="cardFace" style="display: none;">🃊</div>
+                <div class="card-emoji face" id="cardFace">🃊</div>
             </div>
         </div>
-        
-        <button class="exit-btn" id="exitBtn" onclick="exitToStart()">EXIT</button>
     </div>
 
     <script>
+        // ============================================
         // ✅ VARIABLES GLOBALES
+        // ============================================
         var savedCards = [];
         var currentX = null;
         var currentY = null;
@@ -759,33 +718,86 @@
         var values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
         var suits = ['♠', '♥', '♣', '♦'];
         var cometTailRotation = 0;
+        var startRotation = 0;
         var isFlipped = false;
         var isFlipping = false;
-        var hasFlippedOnce = false;
+        var stock = [];
+        var reveal = '10♦';
+        var lastTapTime = 0;
 
-        // ✅ EMOJIS CARTES
-        var cardEmojis = {
-            'A♠': '🂡', '2♠': '🂢', '3♠': '🂣', '4♠': '🂤', '5♠': '🂥',
-            '6♠': '🂦', '7♠': '🂧', '8♠': '🂨', '9♠': '🂩', '10♠': '🂪',
-            'J♠': '🂫', 'Q♠': '🂭', 'K♠': '🂬',
-            'A♥': '🂱', '2♥': '🂲', '3♥': '🂳', '4♥': '🂴', '5♥': '🂵',
-            '6♥': '🂶', '7♥': '🂷', '8♥': '🂸', '9♥': '🂹', '10♥': '🂺',
-            'J♥': '🂻', 'Q♥': '🂽', 'K♥': '🂼',
-            'A♣': '🃑', '2♣': '🃒', '3♣': '🃓', '4♣': '🃔', '5♣': '🃕',
-            '6♣': '🃖', '7♣': '🃗', '8♣': '🃘', '9♣': '🃙', '10♣': '🃚',
-            'J♣': '🃛', 'Q♣': '🃝', 'K♣': '🃜',
-            'A♦': '🃁', '2♦': '🃂', '3♦': '🃃', '4♦': '🃄', '5♦': '🃅',
-            '6♦': '🃆', '7♦': '🃇', '8♦': '🃈', '9♦': '🃉', '10♦': '🃊',
-            'J♦': '🃋', 'Q♦': '🃍', 'K♦': '🃌'
+        // ============================================
+        // ✅ BASIC ORDER (52 CARTES)
+        // ============================================
+        var basicOrder = [
+            'A♠', 'A♥', 'A♣', 'A♦',
+            '2♠', '2♥', '2♣', '2♦',
+            '3♠', '3♥', '3♣', '3♦',
+            '4♠', '4♥', '4♣', '4♦',
+            '5♠', '5♥', '5♣', '5♦',            '6♠', '6♥', '6♣', '6♦',
+            '7♠', '7♥', '7♣', '7♦',
+            '8♠', '8♥', '8♣', '8♦',
+            '9♠', '9♥', '9♣', '9♦',
+            '10♠', '10♥', '10♣', '10♦',
+            'J♠', 'J♥', 'J♣', 'J♦',
+            'Q♠', 'Q♥', 'Q♣', 'Q♦',
+            'K♠', 'K♥', 'K♣', 'K♦'
+        ];
+
+        // ============================================
+        // ✅ HIGHCARDS (7♠ à Q♦)
+        // ============================================
+        var highcards = {
+            '7♠': '4321', '7♥': '3421', '7♣': '2431', '7♦': '1432',
+            '8♠': '4213', '8♥': '3214', '8♣': '2314', '8♦': '1324',
+            '9♠': '4132', '9♥': '3142', '9♣': '2143', '9♦': '1243',
+            '10♠': '4312', '10♥': '3412', '10♣': '2413', '10♦': '1423',
+            'J♠': '4231', 'J♥': '3241', 'J♣': '2341', 'J♦': '1342',
+            'Q♠': '4123', 'Q♥': '3124', 'Q♣': '2134', 'Q♦': '1234'
         };
 
+        // ============================================
+        // ✅ LOWCARDS (A♠ à 6♦)
+        // ============================================
+        var lowcards = {
+            'A♠': '4321', 'A♥': '3421', 'A♣': '2431', 'A♦': '1432',
+            '2♠': '4213', '2♥': '3214', '2♣': '2314', '2♦': '1324',
+            '3♠': '4132', '3♥': '3142', '3♣': '2143', '3♦': '1243',
+            '4♠': '4312', '4♥': '3412', '4♣': '2413', '4♦': '1423',
+            '5♠': '4231', '5♥': '3241', '5♣': '2341', '5♦': '1342',
+            '6♠': '4123', '6♥': '3124', '6♣': '2134', '6♦': '1234'
+        };
+
+        // ============================================
+        // ✅ EMOJIS CARTES
+        // ============================================
+        var cardEmojis = {
+            'A♠': '🂡', 'A♥': '🂱', 'A♣': '🃑', 'A♦': '🃁',
+            '2♠': '🂢', '2♥': '🂲', '2♣': '🃒', '2♦': '🃂',
+            '3♠': '🂣', '3♥': '🂳', '3♣': '🃓', '3♦': '🃃',
+            '4♠': '🂤', '4♥': '🂴', '4♣': '🃔', '4♦': '🃄',
+            '5♠': '🂥', '5♥': '🂵', '5♣': '🃕', '5♦': '🃅',
+            '6♠': '🂦', '6♥': '🂶', '6♣': '🃖', '6♦': '🃆',
+            '7♠': '🂧', '7♥': '🂷', '7♣': '🃗', '7♦': '🃇',
+            '8♠': '🂨', '8♥': '🂸', '8♣': '🃘', '8♦': '🃈',
+            '9♠': '🂩', '9♥': '🂹', '9♣': '🃙', '9♦': '🃉',
+            '10♠': '🂪', '10♥': '🂺', '10♣': '🃚', '10♦': '🃊',
+            'J♠': '🂫', 'J♥': '🂻', 'J♣': '🃛', 'J♦': '🃋',
+            'Q♠': '🂭', 'Q♥': '🂽', 'Q♣': '🃝', 'Q♦': '🃍',            'K♠': '🂬', 'K♥': '🂼', 'K♣': '🃜', 'K♦': '🃌'
+        };
+
+        // ============================================
         // ✅ INITIALISATION AU CHARGEMENT
+        // ============================================
         window.addEventListener('load', function() {
             console.log('✅ Page chargée - Initialisation...');
-            initStartButton();            trackCometRotation();
+            initStartButton();
+            initDoubleTap();
+            trackCometRotation();
         });
 
+        // ============================================
         // ✅ INITIALISATION BOUTON START
+        // ============================================
         function initStartButton() {
             var startBtn = document.getElementById('startBtn');
             if (startBtn) {
@@ -796,7 +808,35 @@
             }
         }
 
+        // ============================================
+        // ✅ INITIALISATION DOUBLE-TAP (300ms)
+        // ============================================
+        function initDoubleTap() {
+            var predictPage = document.getElementById('predictPage');
+            if (predictPage) {
+                predictPage.addEventListener('click', handleDoubleTap);
+                console.log('✅ Double-tap initialisé sur predictPage');
+            }
+        }
+
+        // ============================================
+        // ✅ GESTION DOUBLE-TAP
+        // ============================================
+        function handleDoubleTap(e) {
+            var currentTime = new Date().getTime();
+            var tapLength = currentTime - lastTapTime;
+            
+            if (tapLength < 300 && tapLength > 0) {
+                e.preventDefault();
+                exitToStart();
+                lastTapTime = 0;
+            } else {
+                lastTapTime = currentTime;            }
+        }
+
+        // ============================================
         // ✅ SUIVI ROTATION COMÈTE
+        // ============================================
         function trackCometRotation() {
             var cometTail = document.getElementById('cometTail');
             if (cometTail) {
@@ -813,7 +853,9 @@
             requestAnimationFrame(trackCometRotation);
         }
 
+        // ============================================
         // ✅ ALLER VERS CLAVIER
+        // ============================================
         function goToKeyboard() {
             console.log('🎯 goToKeyboard() appelé');
             
@@ -831,17 +873,18 @@
                     predictBtn.classList.add('predict-giant');
                 } else {
                     predictBtn.classList.remove('predict-giant');
-                }            }
+                }
+            }
             
             startPage.style.display = 'none';
             keyboardPage.style.display = 'flex';
             
             savedCards = [];
-            currentX = null;
-            currentY = null;
+            currentX = null;            currentY = null;
             isFlipped = false;
             isFlipping = false;
-            hasFlippedOnce = false;
+            stock = [];
+            reveal = '10♦';
             
             updateXButtonAnimation();
             updateYButtonAnimation();
@@ -851,7 +894,9 @@
             console.log('✅ Navigation vers clavier réussie');
         }
 
+        // ============================================
         // ✅ ANIMATION BOUTONS X
+        // ============================================
         function updateXButtonAnimation() {
             var allValueBtns = document.querySelectorAll('.value-btn');
             for (var i = 0; i < allValueBtns.length; i++) {
@@ -866,7 +911,9 @@
             }
         }
 
+        // ============================================
         // ✅ ANIMATION BOUTONS Y
+        // ============================================
         function updateYButtonAnimation() {
             var allSuitBtns = document.querySelectorAll('.key.suit');
             for (var i = 0; i < allSuitBtns.length; i++) {
@@ -880,7 +927,9 @@
                 }
             }
         }
-        // ✅ BOUTON PREDICT
+
+        // ============================================
+        // ✅ BOUTON PREDICT        // ============================================
         function updatePredictButton() {
             var predictBtn = document.getElementById('predictBtn');
             if (!predictBtn) return;
@@ -914,7 +963,9 @@
             }
         }
 
+        // ============================================
         // ✅ AFFICHAGE CARTES
+        // ============================================
         function updateDisplay() {
             var display = document.getElementById('displayArea');
             if (!display) return;
@@ -928,8 +979,8 @@
                 var suit = cardKey.slice(-1);
                 newContent += '<span class="display-card" data-suit="' + suit + '">' + cardEmoji + '</span>';
             }
-
-            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {                var currentCard = currentX + currentY;
+            if (currentX !== null && currentY !== null && savedCards.length < maxSavedCards) {
+                var currentCard = currentX + currentY;
                 var currentEmoji = cardEmojis[currentCard] || currentCard;
                 var isDuplicate = (savedCards.indexOf(currentCard) >= 0);
                 var suit = currentCard.slice(-1);
@@ -945,7 +996,9 @@
             attachClickListeners();
         }
 
+        // ============================================
         // ✅ GESTION CLICS CARTES
+        // ============================================
         function attachClickListeners() {
             var display = document.getElementById('displayArea');
             if (!display) return;
@@ -969,22 +1022,25 @@
             }
         }
 
+        // ============================================
         // ✅ SUPPRIMER DERNIÈRE CARTE
+        // ============================================
         function deleteLastCard() {
             if (currentX !== null && currentY !== null) {
-                // Carte en cours effacée
-            } else if (savedCards.length > 0) {
-                savedCards.pop();
+            } else if (savedCards.length > 0) {                savedCards.pop();
             }
             
             currentX = null;
-            currentY = null;            updateXButtonAnimation();
+            currentY = null;
+            updateXButtonAnimation();
             updateYButtonAnimation();
             updatePredictButton();
             updateDisplay();
         }
 
+        // ============================================
         // ✅ AJOUTER CARACTÈRE
+        // ============================================
         function addChar(char) {
             if (values.indexOf(char) >= 0) {
                 if (currentX !== null && currentY !== null) {
@@ -1012,8 +1068,104 @@
             }
         }
 
+        // ============================================
+        // ✅ ✅ ✅ CALCULER LE CODE (SANS INVERSION)
+        // ============================================
+        function calculateCode() {
+            console.log('🔐 calculateCode() appelé');
+            console.log('📦 savedCards:', savedCards);
+            console.log('📦 currentX:', currentX, 'currentY:', currentY);
+            
+            // 1. Créer le stock (ordre d'affichage)            stock = [];
+            
+            // Ajouter les cartes sauvegardées
+            for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
+                stock.push(savedCards[i]);
+            }
+            
+            // ✅ AJOUTER LA CARTE EN COURS (currentX + currentY)
+            if (currentX !== null && currentY !== null && stock.length < 4) {
+                stock.push(currentX + currentY);
+                console.log('➕ Carte en cours ajoutée au stock:', currentX + currentY);
+            }
+            
+            console.log('📦 STOCK FINAL:', stock);
+            
+            // 2. Trouver la position de chaque carte dans basicOrder
+            var cardPositions = [];
+            for (var i = 0; i < stock.length; i++) {
+                var position = basicOrder.indexOf(stock[i]);
+                cardPositions.push({
+                    card: stock[i],
+                    position: position,
+                    index: i
+                });
+                console.log('📍 Position de', stock[i], '=', position);
+            }
+            
+            // 3. Trier par position croissante
+            cardPositions.sort(function(a, b) {
+                return a.position - b.position;
+            });
+            
+            // 4. Attribuer les numéros 1-4
+            var cardNumbers = {};
+            for (var i = 0; i < cardPositions.length; i++) {
+                cardNumbers[cardPositions[i].card] = i + 1;
+            }
+            
+            // 5. Créer le code dans l'ordre du stock
+            var codeArray = [];
+            for (var i = 0; i < stock.length; i++) {
+                codeArray.push(cardNumbers[stock[i]]);
+            }
+            
+            // 6. ✅ PAS D'INVERSION - On garde l'ordre du stock
+            // codeArray.reverse(); ← SUPPRIMÉ
+            
+            // 7. Retourner le code en string
+            var code = codeArray.join('');
+            console.log('🔐 Code calculé:', code);            return code;
+        }
+
+        // ============================================
+        // ✅ DÉTERMINER REVEAL
+        // ============================================
+        function determineReveal(code) {
+            console.log('🎯 Détermination de reveal avec code:', code);
+            
+            // 1. Choisir la liste selon startRotation
+            var liste = (startRotation >= 0 && startRotation < 180) ? highcards : lowcards;
+            var listeName = (startRotation >= 0 && startRotation < 180) ? 'HIGHCARDS' : 'LOWCARDS';
+            console.log('📋 Liste choisie:', listeName, '(rotation:', startRotation, '°)');
+            
+            // 2. Trouver la carte avec ce code
+            var carteTrouvee = null;
+            for (var carte in liste) {
+                if (liste[carte] === code) {
+                    carteTrouvee = carte;
+                    break;
+                }
+            }
+            
+            console.log('🔍 Carte trouvée:', carteTrouvee);
+            
+            // 3. Vérifier si la carte n'est pas dans le stock
+            if (carteTrouvee && stock.indexOf(carteTrouvee) === -1) {
+                reveal = carteTrouvee;
+                console.log('✅ reveal défini:', reveal);
+            } else {
+                reveal = '10♦';
+                console.log('⚠️ Carte dans stock ou inexistante → fallback 10♦');
+            }
+        }
+
+        // ============================================
         // ✅ PREDICT
+        // ============================================
         function predict() {
+            console.log('🔮 predict() appelé');
+            
             var displayedCards = [];
             for (var i = 0; i < Math.min(savedCards.length, maxSavedCards); i++) {
                 displayedCards.push(savedCards[i]);
@@ -1022,30 +1174,41 @@
                 displayedCards.push(currentX + currentY);
             }
             
-            var hasFourCards = (displayedCards.length === 4);
-            var allDifferent = true;
+            var hasFourCards = (displayedCards.length === 4);            var allDifferent = true;
             var uniqueCards = {};
             for (var i = 0; i < displayedCards.length; i++) {
                 if (uniqueCards[displayedCards[i]]) {
-                    allDifferent = false;                    break;
+                    allDifferent = false;
+                    break;
                 }
                 uniqueCards[displayedCards[i]] = true;
             }
             
             if (!hasFourCards || !allDifferent) {
+                console.log('❌ PREDICT refusé');
                 return;
             }
             
+            // ✅ ENREGISTRER startRotation
+            startRotation = cometTailRotation;
+            console.log('📍 startRotation enregistrée:', startRotation, '°');
+            
+            // ✅ CALCULER LE CODE
+            var code = calculateCode();
+            
+            // ✅ DÉTERMINER REVEAL
+            determineReveal(code);
+            
+            // ✅ NAVIGATION VERS PAGE PREDICT
             document.getElementById('keyboardPage').style.display = 'none';
             document.getElementById('predictPage').style.display = 'flex';
             
             document.getElementById('loadingContainer').style.display = 'flex';
             document.getElementById('cardFlipContainer').style.display = 'none';
-            document.getElementById('exitBtn').classList.remove('visible');
             
+            // ✅ RÉINITIALISER LA CARTE
             isFlipped = false;
             isFlipping = false;
-            hasFlippedOnce = false;
             document.getElementById('cardFlipInner').style.transform = 'rotateY(0deg)';
             document.getElementById('cardBack').style.display = 'flex';
             document.getElementById('cardFace').style.display = 'none';
@@ -1053,17 +1216,32 @@
             setTimeout(function() {
                 document.getElementById('loadingContainer').style.display = 'none';
                 document.getElementById('cardFlipContainer').style.display = 'block';
+                
+                // ✅ METTRE À JOUR L'EMOJI DE REVEAL
+                var revealEmoji = cardEmojis[reveal] || '🃊';
+                var revealSuit = reveal.slice(-1);
+                var cardFace = document.getElementById('cardFace');
+                cardFace.textContent = revealEmoji;
+                
+                // ✅ DÉFINIR LA COULEUR SELON L'ENSEIGNE                if (revealSuit === '♥' || revealSuit === '♦') {
+                    cardFace.style.color = '#FF0000';
+                } else {
+                    cardFace.style.color = '#FFFFFF';
+                }
+                
+                console.log('🎴 reveal emoji affiché:', revealEmoji, '(', reveal, ')');
             }, 4000);
         }
 
+        // ============================================
         // ✅ FLIP CARTE
+        // ============================================
         function flipCard() {
             if (isFlipping) return;
             
             var cardInner = document.getElementById('cardFlipInner');
             var cardBack = document.getElementById('cardBack');
             var cardFace = document.getElementById('cardFace');
-            var exitBtn = document.getElementById('exitBtn');
             
             isFlipping = true;
             
@@ -1076,12 +1254,6 @@
                 }, 400);
                 
                 isFlipped = true;
-                                if (!hasFlippedOnce) {
-                    hasFlippedOnce = true;
-                    setTimeout(function() {
-                        exitBtn.classList.add('visible');
-                    }, 800);
-                }
             } else {
                 cardInner.style.transform = 'rotateY(0deg)';
                 
@@ -1096,10 +1268,15 @@
             setTimeout(function() {
                 isFlipping = false;
             }, 800);
+            
+            console.log('🃏 Carte retournée ! isFlipped:', isFlipped);
         }
 
-        // ✅ EXIT VERS START
+        // ============================================        // ✅ EXIT VERS START (DOUBLE-TAP)
+        // ============================================
         function exitToStart() {
+            console.log('🔄 Double-tap détecté - Retour à START');
+            
             document.getElementById('predictPage').style.display = 'none';
             document.getElementById('startPage').style.display = 'flex';
             
@@ -1108,9 +1285,12 @@
             currentY = null;
             isFlipped = false;
             isFlipping = false;
-            hasFlippedOnce = false;
+            stock = [];
+            reveal = '10♦';
+            startRotation = 0;
+            lastTapTime = 0;
             
-            console.log('🔄 Retour à la page d\'accueil');
+            console.log('✅ Toutes les variables réinitialisées');
         }
     </script>
 </body>
